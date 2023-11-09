@@ -696,6 +696,28 @@ def patient_dashboard_view(request):
     }
     return render(request,'hospital/patient_dashboard.html',context=mydict)
 
+@login_required(login_url='patientlogin')
+@user_passes_test(is_patient)
+def patient_self_update_view(request):
+    patient = models.Patient.objects.get(user_id=request.user.id)
+    user=models.User.objects.get(id=patient.user_id)
+    userForm=forms.PatientUserForm(instance=user)
+    patientForm=forms.PatientForm(request.FILES,instance=patient)
+    mydict={'userForm':userForm,'patientForm':patientForm}
+    if request.method=='POST':
+        userForm=forms.PatientUserForm(request.POST,instance=user)
+        patientForm=forms.PatientForm(request.POST,request.FILES,instance=patient)
+        if userForm.is_valid() and patientForm.is_valid():
+            user=userForm.save()
+            user.set_password(user.password)
+            user.save()
+            patient=patientForm.save(commit=False)
+            patient.status=True
+            patient.assignedDoctorId=request.POST.get('assignedDoctorId')
+            patient.save()
+            return HttpResponseRedirect('patientlogin')
+    return render(request,'hospital/patient_self_update.html',context=mydict)
+
 
 
 @login_required(login_url='patientlogin')

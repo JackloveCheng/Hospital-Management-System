@@ -76,6 +76,15 @@ class PatientDischargeDetails(models.Model):
     OtherCharge=models.PositiveIntegerField(null=False)
     total=models.PositiveIntegerField(null=False)
 
+class Ward(models.Model):
+    WardId=models.PositiveIntegerField(null=True)
+    WardType=models.CharField(max_length=30)
+    NurseId=models.PositiveIntegerField(null=True)
+
+class Nurse(models.Model):
+    NurseId=models.PositiveIntegerField(null=True)
+    status = models.BooleanField(default=False)
+
 
 #Developed By : sumit kumar
 #facebook : fb.com/sumit.luv
