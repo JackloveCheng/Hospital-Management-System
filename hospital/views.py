@@ -87,7 +87,7 @@ def patient_signup_view(request):
             user.save()
             patient=patientForm.save(commit=False)
             patient.user=user
-            patient.assignedDoctorId=request.POST.get('assignedDoctorId')
+            #patient.assignedDoctorId=request.POST.get('assignedDoctorId')
             patient=patient.save()
             my_patient_group = Group.objects.get_or_create(name='PATIENT')
             my_patient_group[0].user_set.add(user)
@@ -684,16 +684,30 @@ def delete_appointment_view(request,pk):
 @user_passes_test(is_patient)
 def patient_dashboard_view(request):
     patient=models.Patient.objects.get(user_id=request.user.id)
-    doctor=models.Doctor.objects.get(user_id=patient.assignedDoctorId)
-    mydict={
-    'patient':patient,
-    'doctorName':doctor.get_name,
-    'doctorMobile':doctor.mobile,
-    'doctorAddress':doctor.address,
-    'symptoms':patient.symptoms,
-    'doctorDepartment':doctor.department,
-    'admitDate':patient.admitDate,
-    }
+    mydict={}
+    if patient.assignedDoctorId is not None:
+        doctor=models.Doctor.objects.get(user_id=patient.assignedDoctorId)
+        mydict={
+        'patient':patient,
+        'appointment' :True,
+        'doctorName':doctor.get_name,
+        'doctorMobile':doctor.mobile,
+        'doctorAddress':doctor.address,
+        'symptoms':patient.symptoms,
+        'doctorDepartment':doctor.department,
+        'admitDate':patient.admitDate,
+        }
+    else:
+        mydict={
+        'patient':patient,
+        'appointment' :False,
+        #'doctorName':doctor.get_name,
+        #'doctorMobile':doctor.mobile,
+        #'doctorAddress':doctor.address,
+        'symptoms':patient.symptoms,
+        # 'doctorDepartment':doctor.department,
+        'admitDate':patient.admitDate,
+        }
     return render(request,'hospital/patient_dashboard.html',context=mydict)
 
 @login_required(login_url='patientlogin')
@@ -742,7 +756,9 @@ def patient_book_appointment_view(request):
             desc=request.POST.get('description')
 
             doctor=models.Doctor.objects.get(user_id=request.POST.get('doctorId'))
-            
+            patient.assignedDoctorId=request.POST.get('doctorId')
+            patient = patient.save()
+            print(doctor.id)
             if doctor.department == 'Cardiologist':
                 if 'heart' in desc:
                     pass

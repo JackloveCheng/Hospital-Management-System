@@ -37,6 +37,8 @@ class Patient(models.Model):
     assignedDoctorId = models.PositiveIntegerField(null=True)
     admitDate=models.DateField(auto_now=True)
     status=models.BooleanField(default=False)
+    wardId=models.PositiveIntegerField(null=True)
+
 
     @property
     def get_name(self):
