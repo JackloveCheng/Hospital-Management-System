@@ -57,9 +57,32 @@
       text-align: center;
 
     }
+     /* ---------------------------------------
+    Pattern section
+    ----------------------------------------- */
+    .pattern {
+      width: 100%;
+      height: 150px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4) 25%, rgba(0, 0, 0, 0)),
+        linear-gradient(to right, rgba(0, 0, 0, 0.4) 25%, rgba(0, 0, 0, 0)),
+        linear-gradient(to left, rgba(0, 0, 0, 0.4) 25%, rgba(0, 0, 0, 0)),
+        linear-gradient(to left, rgba(0, 0, 0, 0.4) 25%, rgba(0, 0, 0, 0));
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-size: 20px 20px;
+      background-repeat: repeat-x, repeat-x;
+    }
   </style>
 </head>
 
+<body>
+  <footer>
+    <div class="pattern"></div>
+
+
+
+    <div class="pattern"></div>
+  </footer>
+</body>
 {#<footer>#}
 {##}
 {#  <p>#}
