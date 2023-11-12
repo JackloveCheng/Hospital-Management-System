@@ -14,7 +14,7 @@ facebook : fb.com/sumit.luv
     .jumbotron {
       margin-top: 0px;
       margin-bottom: 0px;
-      background-image: url('{% static "images/bg.jpg" %}');
+      background-image: url('{% static "images/bg1.png" %}');
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -61,13 +61,37 @@ facebook : fb.com/sumit.luv
   <p>
 {#  <h3>Emergency ?</h3>#}
 
+
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="/patientclick" role="button">Take Appointment</a>
   </p>
   <br><br>
 </div>
 
+
 <br><br><br><br>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .centered-text {
+            text-align: center;
+            font-size: 36px; /* 设置字体大小 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 设置字体样式 */
+            color: #4CAF50; /* 设置字体颜色 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加文字阴影效果 */
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-text">
+        <p>Choose your role</p>
+    </div>
+</body>
+</html>
 
 {% include "hospital/admin_doctor_patient_card.html" %}
 <br><br><br>
