@@ -317,6 +317,7 @@ def update_patient_view(request,pk):
     if request.method=='POST':
         userForm=forms.PatientUserForm(request.POST,instance=user)
         patientForm=forms.PatientForm(request.POST,request.FILES,instance=patient)
+        print(patientForm.is_valid())
         if userForm.is_valid() and patientForm.is_valid():
             user=userForm.save()
             user.set_password(user.password)
@@ -666,6 +667,56 @@ def delete_appointment_view(request,pk):
     appointments=zip(appointments,patients)
     return render(request,'hospital/doctor_delete_appointment.html',{'appointments':appointments,'doctor':doctor})
 
+@login_required(login_url='doctorlogin')
+@user_passes_test(is_doctor)
+def doctor_assign_ward_to_patient(request,pk):
+    appointment=models.Appointment.objects.get(id=pk)
+    patient=models.Patient.objects.get(user_id=appointment.patientId)
+    patientForm=forms.PatientForm(request.FILES,instance=patient)
+
+    mydict = {'patientForm': patientForm}
+    if request.method=='POST':
+        patientForm = forms.PatientForm(request.POST, request.FILES, instance=patient)
+        if request.POST.get('wardId')!="":
+            patient.wardId=request.POST.get('wardId')
+            patient.save()
+            return redirect('doctor-view-appointment')
+    return render(request,'hospital/doctor_assign_ward_to_patient.html',mydict)
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def update_patient_view(request,pk):
+    patient=models.Patient.objects.get(id=pk)
+    user=models.User.objects.get(id=patient.user_id)
+
+    userForm=forms.PatientUserForm(instance=user)
+    patientForm=forms.PatientForm(request.FILES,instance=patient)
+    mydict={'userForm':userForm,'patientForm':patientForm}
+    if request.method=='POST':
+        userForm=forms.PatientUserForm(request.POST,instance=user)
+        patientForm=forms.PatientForm(request.POST,request.FILES,instance=patient)
+        print(request.POST.get('assignedDoctorId'))
+        print(request.POST.get('mobile'))
+        print(patientForm.is_valid())
+        if userForm.is_valid() and patientForm.is_valid():
+            user=userForm.save()
+            user.set_password(user.password)
+            user.save()
+            patient=patientForm.save(commit=False)
+            patient.status=True
+            patient.assignedDoctorId=request.POST.get('assignedDoctorId')
+            patient.save()
+            return redirect('admin-view-patient')
+    return render(request,'hospital/admin_update_patient.html',context=mydict)
+
+
+
+
+
+
+
+
+
 
 
 #---------------------------------------------------------------------------------
@@ -697,6 +748,18 @@ def patient_dashboard_view(request):
         'doctorDepartment':doctor.department,
         'admitDate':patient.admitDate,
         }
+        if patient.wardId!='':
+            mydict = {
+                'patient': patient,
+                'appointment': True,
+                'doctorName': doctor.get_name,
+                'doctorMobile': doctor.mobile,
+                'doctorAddress': doctor.address,
+                'symptoms': patient.symptoms,
+                'doctorDepartment': doctor.department,
+                'admitDate': patient.admitDate,
+                'wardId':patient.wardId,
+            }
     else:
         mydict={
         'patient':patient,
