@@ -82,11 +82,28 @@ class PatientDischargeDetails(models.Model):
 class Ward(models.Model):
     WardId=models.PositiveIntegerField(null=True)
     WardType=models.CharField(max_length=30)
-    NurseId=models.PositiveIntegerField(null=True)
+    assignedNurseId=models.PositiveIntegerField(null=True)
+    isAssigned=models.BooleanField(default=False)
 
 class Nurse(models.Model):
     NurseId=models.PositiveIntegerField(null=True)
     status = models.BooleanField(default=False)
+
+class TreatmentRecord:
+    recordId=models.PositiveIntegerField(null=False)
+    doctorId=models.PositiveIntegerField(null=False)
+    patientId=models.PositiveIntegerField(null=False)
+    disease=models.CharField(max_length=30)
+    appointmentDate = models.DateField(auto_now=True)
+
+class Pharmacy:
+    drugId=models.PositiveIntegerField(null=False)
+    drugName=models.CharField(max_length=30)
+    quantity=models.IntegerField(null=False)
+
+
+
+
 
 
 #Developed By : sumit kumar
