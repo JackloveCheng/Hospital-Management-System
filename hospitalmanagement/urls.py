@@ -69,12 +69,16 @@ urlpatterns = [
     path('download-pdf/<int:pk>', views.download_pdf_view,name='download-pdf'),
 
 
+
     path('admin-appointment', views.admin_appointment_view,name='admin-appointment'),
     path('admin-view-appointment', views.admin_view_appointment_view,name='admin-view-appointment'),
     path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     path('approve-appointment/<int:pk>', views.approve_appointment_view,name='approve-appointment'),
     path('reject-appointment/<int:pk>', views.reject_appointment_view,name='reject-appointment'),
+
+    path('admin-pharmacy', views.admin_pharmacy_view, name="admin-pharmacy"),
+    path('admin-treatmentrecord', views.admin_treatmentrecord_view, name="admin-treatmentrecord"),
 ]
 
 
@@ -88,6 +92,7 @@ urlpatterns +=[
 
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
     path('doctor-view-appointment', views.doctor_view_appointment_view,name='doctor-view-appointment'),
+    path('docotor-assign-ward-to-patient/<int:pk>',views.doctor_assign_ward_to_patient,name='docotor-assign-ward-to-patient'),
     path('doctor-delete-appointment',views.doctor_delete_appointment_view,name='doctor-delete-appointment'),
     path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
 ]

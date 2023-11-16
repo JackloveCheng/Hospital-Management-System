@@ -39,6 +39,7 @@ facebook : fb.com/sumit.luv
           <th>Mobile</th>
           <th>Address</th>
           <th>Appointment Date</th>
+          <th>Assign ward</th>
         </tr>
       </thead>
       {% for a,p in appointments %}
@@ -49,6 +50,7 @@ facebook : fb.com/sumit.luv
         <td>{{p.mobile}}</td>
         <td>{{p.address}}</td>
         <td>{{a.appointmentDate}}</td>
+        <td><a class="btn btn-primary btn-xs" href="{% url 'docotor-assign-ward-to-patient' a.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
       </tr>
       {% endfor %}
     </table>

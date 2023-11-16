@@ -1,4 +1,4 @@
-{% extends 'hospital/patient_base.html' %}
+{% extends 'hospital/doctor_view_appointment.html' %}
 {% load widget_tweaks %}
 {% block content %}
 
@@ -47,36 +47,23 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <br><br>
-{% if message %}
-<script>
-  var a = "{{message}}";
-  alert(a);
-</script>
-
-{% endif %}
-
-
-<!------ add appointment page by patient(sumit)  ---------->
-<form method="post">
+<!------ update page for doctor by admin(sumit)  ---------->
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="container register-form">
     <div class="form">
       <div class="note">
-        <p>Book Appointment Details</p>
+        <p>Update Patient Details</p>
       </div>
       <div class="form-content">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="form-group">
-              {% render_field appointmentForm.description class="form-control" placeholder="Description" %}
+              {% render_field patientForm.wardId class="form-control" placeholder="ward Id" %}
             </div>
-            <div class="form-group">
-              {% render_field appointmentForm.doctorId class="form-control" placeholder="doctor" %}
-            </div>
-
           </div>
         </div>
-        <button type="submit" class="btnSubmit">Book</button>
+        <button type="submit" class="btnSubmit">Update</button>
       </div>
     </div>
   </div>
@@ -86,6 +73,5 @@ developed By : sumit kumar
 facebook : fb.com/sumit.luv
 youtube : youtube.com/lazycoders
 -->
-
 
 {% endblock content %}
