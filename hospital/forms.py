@@ -71,6 +71,10 @@ class ContactusForm(forms.Form):
     Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
 
 
+class TreatmentRecordForm(forms.ModelForm):
+    class Meta:
+        model=models.TreatmentRecord
+
 
 #Developed By : sumit kumar
 #facebook : fb.com/sumit.luv
