@@ -90,7 +90,7 @@ class Nurse(models.Model):
     status = models.BooleanField(default=False)
 
 # 治疗记录
-class TreatmentRecord:
+class TreatmentRecord(models.Model):
     recordId = models.PositiveIntegerField(null=False)
     doctorId = models.PositiveIntegerField(null=False)
     patientId = models.PositiveIntegerField(null=False)
@@ -98,7 +98,7 @@ class TreatmentRecord:
     appointmentDate = models.DateField(auto_now=True)
 
 # 药房
-class Pharmacy:
+class Pharmacy(models.Model):
     drugId=models.PositiveIntegerField(null=False)
     drugName=models.CharField(max_length=30)
     quantity=models.IntegerField(null=False)
