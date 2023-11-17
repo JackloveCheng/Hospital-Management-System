@@ -579,6 +579,15 @@ def approve_appointment_view(request,pk):
     appointment=models.Appointment.objects.get(id=pk)
     appointment.status=True
     appointment.save()
+    new_treatment_record=models.TreatmentRecord.objects.create(
+        #
+        #treatment_record_id=random.randint(10000, 99999),
+        doctorId=appointment.doctorId,
+        patientId=appointment.patientId,
+        disease=appointment.description,
+        appointmentDate=appointment.appointmentDate
+    )
+    new_treatment_record.save()
     return redirect(reverse('admin-approve-appointment'))
 
 
@@ -602,7 +611,8 @@ def admin_pharmacy_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_treatmentrecord_view(request):
-    return render(request,'hospital/admin_treatmentrecord.html')
+    treatment_records=models.TreatmentRecord.objects.all()
+    return render(request, 'hospital/admin_treatmentrecord.html', {'treatment_records': treatment_records})
 #---------------------------------------------------------------------------------
 #------------------------ ADMIN RELATED VIEWS END ------------------------------
 #---------------------------------------------------------------------------------
