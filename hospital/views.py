@@ -787,7 +787,7 @@ def doctor_prescribe_view(request):
     drugForm = forms.PharmacyForm()
     mydict = {'drugForm': drugForm}
     if request.method == 'POST':
-        drugForm = forms.PharmacyForm(request.POST, request.FILES)
+        #drugForm = forms.PharmacyForm(request.POST, request.FILES)
         drugId=request.POST.get('drugId')
         drugQuantity=request.POST.get('quantity')
         try:
@@ -797,6 +797,7 @@ def doctor_prescribe_view(request):
             drug.save()
         except ObjectDoesNotExist:
             message = "This drug does not exist"
+            return render(request,'hospital/doctor_prescribe.html',{'drugForm':drugForm,'message':message})
         return redirect('doctor-view-appointment')
 
     return render(request, 'hospital/doctor_prescribe.html', context=mydict)
