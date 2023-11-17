@@ -347,6 +347,21 @@ def admin_add_drug_view(request):
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
+def admin_add_drug_view(request):
+    drugForm = forms.PharmacyForm()
+    mydict = {'drugForm': drugForm}
+    if request.method == 'POST':
+        drugForm = forms.PharmacyForm(request.POST, request.FILES)
+        if drugForm.is_valid():
+            drug = drugForm.save(commit=True)
+            drug.save()
+            return redirect('admin-pharmacy')
+
+    return render(request, 'hospital/admin_add_drug.html', context=mydict)
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_add_patient_view(request):
     userForm=forms.PatientUserForm()
     patientForm=forms.PatientForm()
@@ -545,6 +560,17 @@ def admin_approve_appointment_view(request):
     appointments=models.Appointment.objects.all().filter(status=False)
     return render(request,'hospital/admin_approve_appointment.html',{'appointments':appointments})
 
+
+
+
+
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_pharmacy_view(request):
+    drugs = models.Pharmacy.objects.all()
+    return render(request, 'hospital/admin_pharmacy.html', {'drugs' : drugs})
 
 
 @login_required(login_url='adminlogin')
