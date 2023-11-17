@@ -899,7 +899,11 @@ def patient_appointment_view(request):
     patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
     return render(request,'hospital/patient_appointment.html',{'patient':patient})
 
-
+@login_required(login_url='patientlogin')
+@user_passes_test(is_patient)
+def patient_record_view(request):
+    record=models.TreatmentRecord.objects.all().filter(patientId=request.user.id)
+    return render(request,'hospital/patient_view_record.html',{'records':record})
 
 @login_required(login_url='patientlogin')
 @user_passes_test(is_patient)

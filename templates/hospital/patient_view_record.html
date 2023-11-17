@@ -1,21 +1,17 @@
-{% extends 'hospital/doctor_base.html' %}
+{% extends 'hospital/patient_base.html' %}
 {% block content %}
 {%load static%}
-
 <head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
   <style media="screen">
     a:link {
       text-decoration: none;
     }
-
     h6 {
       text-align: center;
     }
-
     .row {
       margin: 100px;
     }
@@ -28,25 +24,24 @@ facebook : fb.com/sumit.luv
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">Your Total Patient List</h6>
+      <h6 class="panel-title">Treatment records</h6>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Symptoms</th>
-          <th>Mobile</th>
-          <th>Address</th>
-
+          <th>RecordID</th>
+          <th>DoctorID</th>
+            <th>Disease</th>
+            <th>AppointmentDate</th>
         </tr>
       </thead>
-      {% for p in patients %}
+      {% for r in records %}
       <tr>
-        <td> {{p.get_name}}</td>
-{#        <td> <img src="{% static p.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>#}
-        <td>{{p.symptoms}}</td>
-        <td>{{p.mobile}}</td>
-        <td>{{p.address}}</td>
+        <td> {{r.recordId}}</td>
+{#        <td> <img src="{% static d.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>#}
+        <td>{{r.doctorId}}</td>
+        <td>{{r.disease}}</td>
+        <td>{{r.appointmentDate}}</td>
       </tr>
       {% endfor %}
     </table>
@@ -57,5 +52,4 @@ developed By : sumit kumar
 facebook : fb.com/sumit.luv
 youtube : youtube.com/lazycoders
 -->
-
 {% endblock content %}
