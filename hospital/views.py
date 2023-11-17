@@ -629,8 +629,24 @@ def admin_wards_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_view_wards_view(request):
-    wards=models.Patient.objects.all().filter()
+    wards=models.Ward.objects.all()
     return render(request,'hospital/admin_view_wards.html',{'wards':wards})
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_add_wards_view(request):
+    ward_form = forms.WardForm()
+    mydict = {'ward_form': ward_form}
+    if request.method == 'POST':
+        ward_form = forms.WardForm(request.POST, request.FILES)
+        print(1111)
+        if ward_form.is_valid():
+            ward = ward_form.save(commit=True)
+            ward.save()
+            return redirect('admin-view-wards')
+
+    return render(request, 'hospital/admin_add_ward.html', context=mydict)
+
 #---------------------------------------------------------------------------------
 #------------------------ ADMIN RELATED VIEWS END ------------------------------
 #---------------------------------------------------------------------------------

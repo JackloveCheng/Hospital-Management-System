@@ -68,7 +68,7 @@ urlpatterns = [
     path('discharge-patient/<int:pk>', views.discharge_patient_view,name='discharge-patient'),
     path('download-pdf/<int:pk>', views.download_pdf_view,name='download-pdf'),
 
-        path('admin-add-drug', views.admin_add_drug_view, name = 'admin-add-drug'),
+    path('admin-add-drug', views.admin_add_drug_view, name = 'admin-add-drug'),
 
 
     path('admin-appointment', views.admin_appointment_view,name='admin-appointment'),
@@ -83,6 +83,7 @@ urlpatterns = [
 
     path('admin-wards', views.admin_wards_view,name='admin-wards'),
     path('admin-view-wards', views.admin_view_wards_view,name='admin-view-wards'),
+    path('admin-add-wards',views.admin_add_wards_view,name='admin-add-wards'),
 ]
 
 

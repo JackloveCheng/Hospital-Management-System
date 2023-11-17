@@ -18,6 +18,13 @@ class PharmacyForm(forms.ModelForm):
         model = models.Pharmacy
         fields = '__all__'
 
+class WardForm(forms.ModelForm):
+    assignedNurseId = forms.IntegerField(initial='', required=False)
+    isAssigned=forms.BooleanField(initial=False,required=False)
+    class Meta:
+        model =models.Ward
+        fields = ['WardId','WardType']
+
 
 
 # for student related form

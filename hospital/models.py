@@ -10,6 +10,12 @@ departments=[('Cardiologist','Cardiologist'),
 ('Anesthesiologists','Anesthesiologists'),
 ('Colon and Rectal Surgeons','Colon and Rectal Surgeons')
 ]
+
+wardTypes=[
+('Normal','Normal'),
+('Operation room','Operation room'),
+('ICU','ICU'),
+]
 class Doctor(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     #profile_pic= models.ImageField(upload_to='profile_pic/DoctorProfilePic/',null=True,blank=True)
@@ -80,8 +86,8 @@ class PatientDischargeDetails(models.Model):
     total=models.PositiveIntegerField(null=False)
 
 class Ward(models.Model):
-    WardId=models.PositiveIntegerField(null=True)
-    WardType=models.CharField(max_length=30)
+    WardId=models.PositiveIntegerField(primary_key=True)
+    WardType=models.CharField(max_length=30,choices=wardTypes,default='Normal')
     assignedNurseId=models.PositiveIntegerField(null=True)
     isAssigned=models.BooleanField(default=False)
 
