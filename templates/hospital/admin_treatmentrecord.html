@@ -32,6 +32,7 @@ facebook : fb.com/sumit.luv
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
+          <th>Record Id</th>
           <th>Doctor Id</th>
           <th>Patient Id</th>
           <th>Disease</th>
@@ -40,6 +41,7 @@ facebook : fb.com/sumit.luv
       </thead>
       {% for t in treatment_records %}
       <tr>
+        <td> {{t.treatment_record_id}}</td>
         <td> {{t.doctorId}}</td>
         <td>{{t.patientId}}</td>
         <td>{{t.disease}}</td>
