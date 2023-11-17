@@ -91,7 +91,7 @@ class Nurse(models.Model):
 
 # 治疗记录
 class TreatmentRecord(models.Model):
-    recordId = models.PositiveIntegerField(null=False)
+    treatment_record_id = models.AutoField(primary_key=True)
     doctorId = models.PositiveIntegerField(null=False)
     patientId = models.PositiveIntegerField(null=False)
     disease = models.CharField(max_length=30)
