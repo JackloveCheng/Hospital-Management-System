@@ -360,6 +360,8 @@ def admin_add_drug_view(request):
     return render(request, 'hospital/admin_add_drug.html', context=mydict)
 
 
+
+
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_add_patient_view(request):
@@ -613,6 +615,22 @@ def admin_pharmacy_view(request):
 def admin_treatmentrecord_view(request):
     treatment_records=models.TreatmentRecord.objects.all()
     return render(request, 'hospital/admin_treatmentrecord.html', {'treatment_records': treatment_records})
+
+
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_wards_view(request):
+    return render(request,'hospital/admin_wards.html')
+
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_view_wards_view(request):
+    wards=models.Patient.objects.all().filter()
+    return render(request,'hospital/admin_view_wards.html',{'wards':wards})
 #---------------------------------------------------------------------------------
 #------------------------ ADMIN RELATED VIEWS END ------------------------------
 #---------------------------------------------------------------------------------

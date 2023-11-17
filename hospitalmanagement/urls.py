@@ -80,6 +80,9 @@ urlpatterns = [
 
     path('admin-pharmacy', views.admin_pharmacy_view, name="admin-pharmacy"),
     path('admin-treatmentrecord', views.admin_treatmentrecord_view, name="admin-treatmentrecord"),
+
+    path('admin-wards', views.admin_wards_view,name='admin-wards'),
+    path('admin-view-wards', views.admin_view_wards_view,name='admin-view-wards'),
 ]
 
 
