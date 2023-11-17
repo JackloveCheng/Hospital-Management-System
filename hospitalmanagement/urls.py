@@ -100,6 +100,7 @@ urlpatterns +=[
     path('docotor-assign-ward-to-patient/<int:pk>',views.doctor_assign_ward_to_patient,name='docotor-assign-ward-to-patient'),
     path('doctor-delete-appointment',views.doctor_delete_appointment_view,name='doctor-delete-appointment'),
     path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
+    path('doctor-prescribe',views.doctor_prescribe_view,name='doctor-prescribe')
 ]
 
 

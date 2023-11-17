@@ -779,31 +779,31 @@ def doctor_assign_ward_to_patient(request,pk):
             return redirect('doctor-view-appointment')
     return render(request,'hospital/doctor_assign_ward_to_patient.html',mydict)
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
-def update_patient_view(request,pk):
-    patient=models.Patient.objects.get(id=pk)
-    user=models.User.objects.get(id=patient.user_id)
 
-    userForm=forms.PatientUserForm(instance=user)
-    patientForm=forms.PatientForm(request.FILES,instance=patient)
-    mydict={'userForm':userForm,'patientForm':patientForm}
-    if request.method=='POST':
-        userForm=forms.PatientUserForm(request.POST,instance=user)
-        patientForm=forms.PatientForm(request.POST,request.FILES,instance=patient)
-        print(request.POST.get('assignedDoctorId'))
-        print(request.POST.get('mobile'))
-        print(patientForm.is_valid())
-        if userForm.is_valid() and patientForm.is_valid():
-            user=userForm.save()
-            user.set_password(user.password)
-            user.save()
-            patient=patientForm.save(commit=False)
-            patient.status=True
-            patient.assignedDoctorId=request.POST.get('assignedDoctorId')
-            patient.save()
-            return redirect('admin-view-patient')
-    return render(request,'hospital/admin_update_patient.html',context=mydict)
+from django.core.exceptions import ObjectDoesNotExist
+@login_required(login_url='doctorlogin')
+@user_passes_test(is_doctor)
+def doctor_prescribe_view(request):
+    drugForm = forms.PharmacyForm()
+    mydict = {'drugForm': drugForm}
+    if request.method == 'POST':
+        drugForm = forms.PharmacyForm(request.POST, request.FILES)
+        drugId=request.POST.get('drugId')
+        drugQuantity=request.POST.get('quantity')
+        try:
+            drug=models.Pharmacy.objects.get(drugId=drugId)
+            print(drug.drugId)
+            drug.quantity-=int(drugQuantity)
+            drug.save()
+        except ObjectDoesNotExist:
+            message = "This drug does not exist"
+        return redirect('doctor-view-appointment')
+
+    return render(request, 'hospital/doctor_prescribe.html', context=mydict)
+
+
+
+
 
 
 
