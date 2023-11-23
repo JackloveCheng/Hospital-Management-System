@@ -44,6 +44,7 @@
                   <h3 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Log in</h3>
                   <div class="u-form u-login-control u-white u-form-1">
                     <form action="#" class="u-clearfix u-form-custom-backend u-form-spacing-20 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 30px;" method="post">
+                        {% csrf_token %}
                       <div class="u-form-group u-form-name">
                         <label for="username-a30d" class="u-label">Username *</label>
                           {% render_field form.username required="" class="u-grey-5 u-input u-input-rectangle u-input-1" id="username-a30d" name="username" placeholder="Enter your Username" %}
