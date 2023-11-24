@@ -134,13 +134,6 @@
 				</li>
 
 
-				<li>
-					<a href="/doctor-dashboard">
-						<i class="entypo-window"></i>
-						<span>Doctor</span>
-					</a>
-				</li>
-
 
 				<li>
 					<a href="/doctor-patient">
@@ -303,11 +296,10 @@
 
 					<div class="tile-stats tile-red">
 						<div class="icon"><i class="entypo-users"></i></div>
-						<div class="num" data-start="0" data-end="83" data-postfix="" data-duration="1500"
-							data-delay="0">0</div>
-
-						<h3>Registered users</h3>
-						<p>so far in our blog, and our website.</p>
+						<div class="num" data-postfix="" data-duration="1500"
+							data-delay="0">{{appointmentcount}}</div>
+                        <br>
+                              <h4>Appointments For You</h4>
 					</div>
 
 				</div>
@@ -317,11 +309,10 @@
 
 					<div class="tile-stats tile-green">
 						<div class="icon"><i class="entypo-chart-bar"></i></div>
-						<div class="num" data-start="0" data-end="135" data-postfix="" data-duration="1500"
-							data-delay="600">0</div>
-
-						<h3>Daily Visitors</h3>
-						<p>this is the average value.</p>
+						<div class="num"  data-postfix="" data-duration="1500"
+							data-delay="600">{{patientcount}}</div>
+                        <br>
+                          <h4>Patient Under You</h4>
 					</div>
 
 				</div>
@@ -330,11 +321,10 @@
 
 					<div class="tile-stats tile-blue">
 						<div class="icon"><i class="entypo-rss"></i></div>
-						<div class="num" data-start="0" data-end="52" data-postfix="" data-duration="1500"
-							data-delay="1800">0</div>
-
-						<h3>Subscribers</h3>
-						<p>on our site right now.</p>
+						<div class="num"  data-postfix="" data-duration="1500"
+							data-delay="1800">{{patientdischarged}}</div>
+                        <br>
+                              <h4>Your Patient Discharged</h4>
 					</div>
 
 				</div>

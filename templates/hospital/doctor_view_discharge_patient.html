@@ -1,30 +1,349 @@
-{% extends 'hospital/doctor_base.html' %}
-{% block content %}
-{%load static%}
+{#{% extends 'hospital/doctor_base.html' %}#}
+{#{% block content %}#}
+{#{%load static%}#}
+{##}
+{#<head>#}
+{#  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
+{#  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>#}
+{#  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>#}
+{##}
+{#  <style media="screen">#}
+{#    a:link {#}
+{#      text-decoration: none;#}
+{#    }#}
+{##}
+{#    h6 {#}
+{#      text-align: center;#}
+{#    }#}
+{##}
+{#    .row {#}
+{#      margin: 100px;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<!--#}
+{#written By : sumit kumar#}
+{#facebook : fb.com/sumit.luv#}
+{#-->#}
+{#<div class="container">#}
+{#  <div class="panel panel-primary">#}
+{#    <div class="panel-heading">#}
+{#      <h6 class="panel-title">Your Discharged Patient List</h6>#}
+{#    </div>#}
+{#    <table class="table table-hover" id="dev-table">#}
+{#      <thead>#}
+{#        <tr>#}
+{#          <th>Name</th>#}
+{##}
+{#          <th>Admit Date</th>#}
+{#          <th>Release Date</th>#}
+{#          <th>Symptoms</th>#}
+{#          <th>Mobile</th>#}
+{#          <th>Address</th>#}
+{##}
+{#        </tr>#}
+{#      </thead>#}
+{#      {% for p in dischargedpatients %}#}
+{#      <tr>#}
+{#        <td> {{p.patientName}}</td>#}
+{#        <td>{{p.admitDate}}</td>#}
+{#        <td>{{p.releaseDate}}</td>#}
+{#        <td>{{p.symptoms}}</td>#}
+{#        <td>{{p.mobile}}</td>#}
+{#        <td>{{p.address}}</td>#}
+{#      </tr>#}
+{#      {% endfor %}#}
+{#    </table>#}
+{#  </div>#}
+{#</div>#}
+{#<!--#}
+{#developed By : sumit kumar#}
+{#facebook : fb.com/sumit.luv#}
+{#youtube : youtube.com/lazycoders#}
+{#-->#}
+{##}
+{#{% endblock content %}#}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <style media="screen">
-    a:link {
-      text-decoration: none;
-    }
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Neon Admin Panel">
+	<meta name="author" content="">
 
-    h6 {
-      text-align: center;
-    }
+	<title>Admin | Dashboard</title>
 
-    .row {
-      margin: 100px;
-    }
-  </style>
+
+	<link rel="stylesheet" href="static/css/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="static/css/entypo.css">
+	<link rel="stylesheet" href="static/css/css.css">
+	<link rel="stylesheet" href="static/css/bootstrap.css">
+	<link rel="stylesheet" href="static/css/neon-core.css">
+	<link rel="stylesheet" href="static/css/neon-theme.css">
+	<link rel="stylesheet" href="static/css/neon-forms.css">
+	<link rel="stylesheet" href="static/css/custom.css">
+
+	<script src="static/js/jquery-1.11.0.min.js"></script>
+
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+
 </head>
-<!--
-written By : sumit kumar
-facebook : fb.com/sumit.luv
--->
+
+<body class="page-body  page-fade" data-url="http://sc.chinaz.com">
+
+	<div class="page-container">
+		<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+		<div class="sidebar-menu">
+
+
+			<header class="logo-env">
+
+				<!-- logo -->
+				<div class="logo">
+					<a href="">
+						<img src="static/picture/logo@2x.png" width="120" alt="">
+					</a>
+				</div>
+
+				<!-- logo collapse icon -->
+
+				<div class="sidebar-collapse">
+					<a href="#"
+						class="sidebar-collapse-icon with-animation"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+
+
+				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+				<div class="sidebar-mobile-menu visible-xs">
+					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+			</header>
+
+
+
+
+
+
+			<ul id="main-menu" class="">
+				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
+				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+				<!-- Search Bar -->
+				<li class="active opened active">
+					<a href="/doctor-dashboard">
+						<i class="entypo-gauge"></i>
+						<span>Dashboard</span>
+					</a>
+				</li>
+
+
+
+				<li>
+					<a href="/doctor-patient">
+						<i class="entypo-window"></i>
+						<span>Patient</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/doctor-appointment">
+						<i class="entypo-window"></i>
+						<span>Appointment</span>
+					</a>
+				</li>
+
+                 </ul>
+		</div>
+		<div class="main-content">
+
+			<div class="row">
+
+				<!-- Profile Info and Notifications -->
+				<div class="col-md-6 col-sm-8 clearfix">
+
+					<ul class="user-info pull-left pull-none-xsm">
+
+						<!-- Profile Info -->
+						<li class="profile-info dropdown">
+							<!-- add class "pull-right" if you want to place this from right -->
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
+								Admin：{{request.user.first_name}}
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<!-- Reverse Caret -->
+								<li class="caret"></li>
+
+								<!-- Profile sub-links -->
+								<li>
+									<a href="extra-timeline.html">
+										<i class="entypo-user"></i>
+										Edit Profile
+									</a>
+								</li>
+
+								<li>
+									<a href="mailbox.html">
+										<i class="entypo-mail"></i>
+										Inbox
+									</a>
+								</li>
+
+								<li>
+									<a href="extra-calendar.html">
+										<i class="entypo-calendar"></i>
+										Calendar
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="entypo-clipboard"></i>
+										Tasks
+									</a>
+								</li>
+							</ul>
+						</li>
+
+					</ul>
+
+					<ul class="user-info pull-left pull-right-xs pull-none-xsm">
+
+						<!-- Raw Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-attention"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+
+								<li>
+									<ul class="dropdown-menu-list scroller">
+									</ul>
+								</li>
+
+
+							</ul>
+
+						</li>
+
+						<!-- Message Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-mail"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+						<!-- Task Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-list"></i>
+								<span class="badge badge-warning"></span>
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+
+				<!-- Raw Links -->
+				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+					<ul class="list-inline links-list pull-right">
+
+						<!-- Language Selector -->
+
+						<li class="sep"></li>
+
+						<li class="sep"></li>
+
+						<li>
+							<a href="/logout">
+								Log Out <i class="entypo-logout right"></i>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<hr>
+
+
+			<div class="row">
+				<div class="col-sm-3">
+
+					<div class="tile-stats tile-red">
+						<div class="icon"><i class="entypo-users"></i></div>
+                          <a href="/doctor-view-patient">
+                            <h3 class="m-b-20">Your Patient Record</h3>
+                          </a>
+                          <br>
+					</div>
+
+				</div>
+
+
+				<div class="col-sm-3">
+
+					<div class="tile-stats tile-green">
+						<div class="icon"><i class="entypo-chart-bar"></i></div>
+                      <a href="/doctor-view-discharge-patient">
+                        <h3 class="m-b-20">Your Discharged Patient</h3>
+                      </a>
+                      <br>
+					</div>
+
+				</div>
+
+
+			</div>
+     <br>
+        <br>
+        <br>
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -56,10 +375,35 @@ facebook : fb.com/sumit.luv
     </table>
   </div>
 </div>
-<!--
-developed By : sumit kumar
-facebook : fb.com/sumit.luv
-youtube : youtube.com/lazycoders
--->
 
-{% endblock content %}
+
+			<br>
+		</div>
+
+	</div>
+	</div>
+	<link rel="stylesheet" href="static/css/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="static/css/rickshaw.min.css">
+
+	<!-- Bottom Scripts -->
+	<script src="static/js/main-gsap.js"></script>
+	<script src="static/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="static/js/bootstrap.js"></script>
+	<script src="static/js/joinable.js"></script>
+	<script src="static/js/resizeable.js"></script>
+	<script src="static/js/neon-api.js"></script>
+	<script src="static/js/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="static/js/jquery-jvectormap-europe-merc-en.js"></script>
+	<script src="static/js/jquery.sparkline.min.js"></script>
+	<script src="static/js/d3.v3.js"></script>
+	<script src="static/js/rickshaw.min.js"></script>
+	<script src="static/js/raphael-min.js"></script>
+	<script src="static/js/morris.min.js"></script>
+	<script src="static/js/toastr.js"></script>
+	<script src="static/js/neon-chat.js"></script>
+	<script src="static/js/neon-custom.js"></script>
+	<script src="static/js/neon-demo.js"></script>
+
+</body>
+
+</html>
