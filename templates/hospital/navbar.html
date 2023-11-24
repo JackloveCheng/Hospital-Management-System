@@ -1,65 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 {% load static %}
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- Required meta tags -->
 
-  <style type="text/css">
-    .bs-example {
-      margin: 0px;
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="{% static 'css/css2.css' %}" rel="stylesheet">
+	<!-- Bootstrap CSS -->
 
-    }
-
-    .navbar-brand {
-      font-size: 20px;
-      font-family: sans-serif;
-
-    }
-  </style>
+	<link href="{% static 'css/aos.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery.smartmenus.bootstrap-4.css' %}" rel="stylesheet">
+    <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/flaticon-icon.css' %}" rel="stylesheet">
+    <link href="{% static 'css/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2-bootstrap-5-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ion.rangeSlider.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/raty.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slick.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slick-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/magnific-popup.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<title>Hospital Management System</title>
 </head>
 
 <body>
+    <!-- Page Loader -->
+	<div class="page-loader-wrapper flex-column align-items-center justify-content-center">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-green">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p class="fs-12 fw-semibold mb-0 mt-3 text-uppercase">Please wait...</p>
+		</div>
+	</div>
+	<!-- /.Page Loader -->
+	<!-- Start Topbar -->
+	<div class="topbar d-none d-lg-block py-3">
+		<div class="container">
+				<div class="row align-items-center">
+						<div class="col-md-4 col-lg-3 col-xl-4">
+							<a href="" class="headerLogo"><img src="../../static/picture/logo.png" alt="" height="40"></a>
+						</div>
+
+
+						</div>
+				</div>
+		</div>
+	</div>
+	<!-- /.End Topbar -->
+	<!-- Start Navbar -->
+	<!-- <nav class="custom-navbar navbar navbar-expand-lg fixed-top navbar-transfarent"> -->
+		<nav class="custom-navbar navbar navbar-expand-lg sticky-top no-logo no-logo">
+		<!-- <nav class="custom-navbar navbar navbar-expand-lg navbar-light sticky-top"> -->
+		<div class="container">
+			<!-- Start Navbar Brand-->
+			<a class="border-end navbar-brand pe-3 pe-sm-4 py-0" href=""> <img class="logo-dark" src="../../static/picture/logo.png" alt=""> <img class="logo-white" src="../../static/picture/logo-white.png" alt=""> </a>
+			<!-- End Navbar Brand-->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Start Navbar Collapse Header -->
+				<div class="align-items-center border-bottom d-flex d-lg-none  justify-content-between mb-3 navbar-collapse__header pb-3">
+					<!-- Start Brand Logo For Mobile -->
+					<div class="collapse-brand flex-shrink-0">
+						<a href=""><img src="../../static/picture/logo.png" alt=""></a>
+					</div>
+					<!-- End Brand Logo For Mobile -->
+					<!-- Start Collapse Close Button -->
+					<div class="flex-grow-1 ms-3 text-end">
+						<button type="button" class="bg-transparent border-0 collapse-close p-0 position-relative"><span></span> <span></span></button>
+					</div>
+					<!-- End Collapse Close Button -->
+				</div>
+				<!-- End Navbar Collapse Header -->
+				<ul class="navbar-nav">
+
+
+					<li class="nav-item"> <a class="nav-link " href="/logout">Home</a>
+            		<li class="nav-item"> <a class="nav-link " href="/adminclick">Admin</a>
+					<li class="nav-item"> <a class="nav-link " href="/doctorclick">Doctor</a>
+
+					<li class="nav-item"> <a class="nav-link " href="/patientclick">Patient</a>
 
 
 
-  <div class="bs-example">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#337AB7;">
-      <a href="/" class="navbar-brand">Hospital Management</a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-        <div class="navbar-nav">
-
-          <a href="/adminclick" class="nav-item nav-link">Admin</a>
-          <a href="/doctorclick" class="nav-item nav-link">Doctor</a>
-          <a href="/patientclick" class="nav-item nav-link">Patient</a>
+					 </li>
+				</ul>
+			</div>
+			<div class="d-flex ms-lg-5">
 
 
-        </div>
+				<!-- Start Login & Signup Button -->
+				<a href="/logout" class="btn btn-primary ms-2 ms-xl-0"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="ms-2 d-none d-sm-inline-block">Exit</span> </a>
+				<!-- End Login & Signup Button -->
+				<!-- Start Color Change Button -->
+				<!-- <div class="d-none d-sm-inline-block ms-1">
+              <button type="button" class="btn btn-primary dark-btn"><i class="fa-solid fa-moon"></i></button>
+              <button type="button" class="btn btn-primary light-btn"><i class="fa-solid fa-lightbulb"></i></button>
+            </div> -->
+				<!-- End Color Change Button -->
+			</div>
+		</div>
+	</nav>
 
-{#        <div class="navbar-nav">#}
-{#          <a href="/aboutus" class="nav-item nav-link">About Us</a>#}
-{#          <a href="/contactus" class="nav-item nav-link">Contact Us</a>#}
-{#        </div>#}
 
-      </div>
-    </nav>
-  </div>
 
-  <!--
-  developed By : sumit kumar
-  facebook : fb.com/sumit.luv
-  youtube : youtube.com/lazycoders
-  -->
 
+	<!-- Optional JavaScript -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery.smartmenus.min.js' %}"></script>
+    <script src="{% static 'js/jquery.smartmenus.bootstrap-4.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/select2.min.js' %}"></script>
+    <script src="{% static 'js/ResizeSensor.min.js' %}"></script>
+    <script src="{% static 'js/theia-sticky-sidebar.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/hideShowPassword.min.js' %}"></script>
+    <script src="{% static 'js/ion.rangeSlider.min.js' %}"></script>
+    <script src="{% static 'js/raty.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/vidbg.min.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/typed.min.js' %}"></script>
+    <script src="{% static 'js/typed.active.js' %}"></script>
+    <script src="{% static 'js/aos.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>
