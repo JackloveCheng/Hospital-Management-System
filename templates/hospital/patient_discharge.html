@@ -1,250 +1,573 @@
-{% extends 'hospital/patient_base.html' %}
-{% load static %}
-{% block content %}
+{#{% extends 'hospital/patient_base.html' %}#}
+{#{% load static %}#}
+{#{% block content %}#}
+{##}
+{#<head>#}
+{#  <meta charset="utf-8">#}
+{#  <title>A simple, clean, and responsive HTML invoice template</title>#}
+{##}
+{#  <style>#}
+{#    .invoice-box {#}
+{#      max-width: 800px;#}
+{#      margin: auto;#}
+{#      padding: 30px;#}
+{#      border: 1px solid #eee;#}
+{#      box-shadow: 0 0 10px rgba(0, 0, 0, .15);#}
+{#      font-size: 16px;#}
+{#      line-height: 24px;#}
+{#      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;#}
+{#      color: #555;#}
+{#    }#}
+{##}
+{#    .invoice-box table {#}
+{#      width: 100%;#}
+{#      line-height: inherit;#}
+{#      text-align: left;#}
+{#    }#}
+{##}
+{#    .invoice-box table td {#}
+{#      padding: 5px;#}
+{#      vertical-align: top;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr td:nth-child(2) {#}
+{#      text-align: right;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.top table td {#}
+{#      padding-bottom: 20px;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.top table td.title {#}
+{#      font-size: 45px;#}
+{#      line-height: 45px;#}
+{#      color: #333;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.information table td {#}
+{#      padding-bottom: 40px;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.heading td {#}
+{#      background: #eee;#}
+{#      border-bottom: 1px solid #ddd;#}
+{#      font-weight: bold;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.details td {#}
+{#      padding-bottom: 20px;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.item td {#}
+{#      border-bottom: 1px solid #eee;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.item.last td {#}
+{#      border-bottom: none;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.total td:nth-child(2) {#}
+{#      border-top: 2px solid #eee;#}
+{#      font-weight: bold;#}
+{#    }#}
+{##}
+{#    @media only screen and (max-width: 600px) {#}
+{#      .invoice-box table tr.top table td {#}
+{#        width: 100%;#}
+{#        display: block;#}
+{#        text-align: center;#}
+{#      }#}
+{##}
+{#      .invoice-box table tr.information table td {#}
+{#        width: 100%;#}
+{#        display: block;#}
+{#        text-align: center;#}
+{#      }#}
+{#    }#}
+{##}
+{#    /** RTL **/#}
+{#    .rtl {#}
+{#      direction: rtl;#}
+{#      font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;#}
+{#    }#}
+{##}
+{#    .rtl table {#}
+{#      text-align: right;#}
+{#    }#}
+{##}
+{#    .rtl table tr td:nth-child(2) {#}
+{#      text-align: left;#}
+{#    }#}
+{##}
+{#    .menu {#}
+{#      top: 50px;#}
+{#    }#}
+{##}
+{#    .download {#}
+{#      text-align: center;#}
+{#      display: block;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{##}
+{#<br><br><br>#}
+{##}
+{#{%if is_discharged%}#}
+{#<div class="invoice-box">#}
+{#  <table cellpadding="0" cellspacing="0">#}
+{#    <tr class="top">#}
+{#      <td colspan="2">#}
+{#        <table>#}
+{#          <tr>#}
+{#            <td class="title">#}
+{#              <h1>Hospital Management</h1>#}
+{#            </td>#}
+{##}
+{#            <td>#}
+{##}
+{#              Admit Date: {{admitDate}}<br>#}
+{#              Release Date: {{releaseDate}}<br>#}
+{#              Days Spent: {{daySpent}}#}
+{#            </td>#}
+{#          </tr>#}
+{#        </table>#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="information">#}
+{#      <td colspan="2">#}
+{#        <table>#}
+{#          <tr>#}
+{#            <td>#}
+{#              Patient Name : {{patientName}}<br>#}
+{#              Patient Mobile : {{mobile}}<br>#}
+{#              Patient Addres : {{address}}<br>#}
+{#            </td>#}
+{##}
+{#            <td>#}
+{#              Doctor Name :<br>#}
+{#              {{assignedDoctorName}}<br>#}
+{##}
+{#            </td>#}
+{#          </tr>#}
+{#        </table>#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="heading">#}
+{#      <td>#}
+{#        Disease and Symptoms#}
+{#      </td>#}
+{#      <td>#}
+{##}
+{#      </td>#}
+{##}
+{#    </tr>#}
+{##}
+{#    <tr class="details">#}
+{#      <td>#}
+{#        {{symptoms}}#}
+{#      </td>#}
+{#    </tr>#}
+{#    <tr class="heading">#}
+{#      <td>#}
+{#        Item#}
+{#      </td>#}
+{##}
+{#      <td>#}
+{#        Price#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="item">#}
+{#      <td>#}
+{#        Room Charge of {{daySpent}} Days#}
+{#      </td>#}
+{##}
+{#      <td>#}
+{#        {{roomCharge}}#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="item">#}
+{#      <td>#}
+{#        Doctor Fee#}
+{#      </td>#}
+{##}
+{#      <td>#}
+{#        {{doctorFee}}#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="item">#}
+{#      <td>#}
+{#        Medicine Cost#}
+{#      </td>#}
+{##}
+{#      <td>#}
+{#        {{medicineCost}}#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="item last">#}
+{#      <td>#}
+{#        Other Charge#}
+{#      </td>#}
+{##}
+{#      <td>#}
+{#        {{OtherCharge}}#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="total">#}
+{#      <td></td>#}
+{##}
+{#      <td>#}
+{#        Total Rupees : {{total}}#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#  </table>#}
+{#</div>#}
+{#<br><br>#}
+{#<div class="download">#}
+{#  <a style="background:red; width:500px;" href="{% url 'download-pdf' patientId  %}">Download</a>#}
+{#</div>#}
+{##}
+{##}
+{##}
+{#{%else%}#}
+{#<h5 style="text-align:center;">You Are Not Discharged By Hospital !</h5>#}
+{#<h5 style="text-align:center;">Your Treatment Is Going On !</h5><br><br>#}
+{#<h6 style="text-align:center;">When You Will Be Discahrged. You Can Download Invoice.</h6>#}
+{#{%endif%}#}
+{#<!--#}
+{#developed By : sumit kumar#}
+{#facebook : fb.com/sumit.luv#}
+{#youtube : youtube.com/lazycoders#}
+{#-->#}
+{#<br><br><br><br><br><br><br><br>#}
+{#{% endblock content %}#}
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>A simple, clean, and responsive HTML invoice template</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <style>
-    .invoice-box {
-      max-width: 800px;
-      margin: auto;
-      padding: 30px;
-      border: 1px solid #eee;
-      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-      font-size: 16px;
-      line-height: 24px;
-      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-      color: #555;
-    }
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Neon Admin Panel">
+	<meta name="author" content="">
 
-    .invoice-box table {
-      width: 100%;
-      line-height: inherit;
-      text-align: left;
-    }
+	<title>Admin | Dashboard</title>
 
-    .invoice-box table td {
-      padding: 5px;
-      vertical-align: top;
-    }
 
-    .invoice-box table tr td:nth-child(2) {
-      text-align: right;
-    }
+	<link rel="stylesheet" href="static/css/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="static/css/entypo.css">
+	<link rel="stylesheet" href="static/css/css.css">
+	<link rel="stylesheet" href="static/css/bootstrap.css">
+	<link rel="stylesheet" href="static/css/neon-core.css">
+	<link rel="stylesheet" href="static/css/neon-theme.css">
+	<link rel="stylesheet" href="static/css/neon-forms.css">
+	<link rel="stylesheet" href="static/css/custom.css">
 
-    .invoice-box table tr.top table td {
-      padding-bottom: 20px;
-    }
+	<script src="static/js/jquery-1.11.0.min.js"></script>
 
-    .invoice-box table tr.top table td.title {
-      font-size: 45px;
-      line-height: 45px;
-      color: #333;
-    }
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-    .invoice-box table tr.information table td {
-      padding-bottom: 40px;
-    }
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
 
-    .invoice-box table tr.heading td {
-      background: #eee;
-      border-bottom: 1px solid #ddd;
-      font-weight: bold;
-    }
 
-    .invoice-box table tr.details td {
-      padding-bottom: 20px;
-    }
-
-    .invoice-box table tr.item td {
-      border-bottom: 1px solid #eee;
-    }
-
-    .invoice-box table tr.item.last td {
-      border-bottom: none;
-    }
-
-    .invoice-box table tr.total td:nth-child(2) {
-      border-top: 2px solid #eee;
-      font-weight: bold;
-    }
-
-    @media only screen and (max-width: 600px) {
-      .invoice-box table tr.top table td {
-        width: 100%;
-        display: block;
-        text-align: center;
-      }
-
-      .invoice-box table tr.information table td {
-        width: 100%;
-        display: block;
-        text-align: center;
-      }
-    }
-
-    /** RTL **/
-    .rtl {
-      direction: rtl;
-      font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
-
-    .rtl table {
-      text-align: right;
-    }
-
-    .rtl table tr td:nth-child(2) {
-      text-align: left;
-    }
-
-    .menu {
-      top: 50px;
-    }
-
-    .download {
-      text-align: center;
-      display: block;
-    }
-  </style>
 </head>
 
-<br><br><br>
+<body class="page-body  page-fade" data-url="http://sc.chinaz.com">
 
-{%if is_discharged%}
-<div class="invoice-box">
-  <table cellpadding="0" cellspacing="0">
-    <tr class="top">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td class="title">
-              <h1>Hospital Management</h1>
-            </td>
+	<div class="page-container">
+		<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
-            <td>
+		<div class="sidebar-menu">
 
-              Admit Date: {{admitDate}}<br>
-              Release Date: {{releaseDate}}<br>
-              Days Spent: {{daySpent}}
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
 
-    <tr class="information">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td>
-              Patient Name : {{patientName}}<br>
-              Patient Mobile : {{mobile}}<br>
-              Patient Addres : {{address}}<br>
-            </td>
+			<header class="logo-env">
 
-            <td>
-              Doctor Name :<br>
-              {{assignedDoctorName}}<br>
+				<!-- logo -->
+				<div class="logo">
+					<a href="">
+						<img src="static/picture/logo@2x.png" width="120" alt="">
+					</a>
+				</div>
 
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
+				<!-- logo collapse icon -->
 
-    <tr class="heading">
-      <td>
-        Disease and Symptoms
-      </td>
-      <td>
-
-      </td>
-
-    </tr>
-
-    <tr class="details">
-      <td>
-        {{symptoms}}
-      </td>
-    </tr>
-    <tr class="heading">
-      <td>
-        Item
-      </td>
-
-      <td>
-        Price
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Room Charge of {{daySpent}} Days
-      </td>
-
-      <td>
-        {{roomCharge}}
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Doctor Fee
-      </td>
-
-      <td>
-        {{doctorFee}}
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Medicine Cost
-      </td>
-
-      <td>
-        {{medicineCost}}
-      </td>
-    </tr>
-
-    <tr class="item last">
-      <td>
-        Other Charge
-      </td>
-
-      <td>
-        {{OtherCharge}}
-      </td>
-    </tr>
-
-    <tr class="total">
-      <td></td>
-
-      <td>
-        Total Rupees : {{total}}
-      </td>
-    </tr>
-
-  </table>
-</div>
-<br><br>
-<div class="download">
-  <a style="background:red; width:500px;" href="{% url 'download-pdf' patientId  %}">Download</a>
-</div>
+				<div class="sidebar-collapse">
+					<a href="#"
+						class="sidebar-collapse-icon with-animation"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
 
 
 
-{%else%}
-<h5 style="text-align:center;">You Are Not Discharged By Hospital !</h5>
-<h5 style="text-align:center;">Your Treatment Is Going On !</h5><br><br>
-<h6 style="text-align:center;">When You Will Be Discahrged. You Can Download Invoice.</h6>
-{%endif%}
-<!--
-developed By : sumit kumar
-facebook : fb.com/sumit.luv
-youtube : youtube.com/lazycoders
--->
-<br><br><br><br><br><br><br><br>
-{% endblock content %}
+				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+				<div class="sidebar-mobile-menu visible-xs">
+					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+			</header>
+
+
+
+
+
+
+		 <ul id="main-menu" class="">
+				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
+				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+				<!-- Search Bar -->
+				<li class="active opened active">
+					<a href="">
+						<i class="entypo-gauge"></i>
+						<span>Dashboard</span>
+					</a>
+				</li>
+
+
+
+				<li>
+					<a href="/patient-appointment">
+						<i class="entypo-window"></i>
+						<span>Appointments</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/patient-record">
+						<i class="entypo-window"></i>
+						<span>Treatment records</span>
+					</a>
+				</li>
+
+                <li>
+					<a href="/patient-discharge">
+						<i class="entypo-window"></i>
+						<span>Discharge</span>
+					</a>
+				</li>
+
+                <li>
+					<a href="/patient_self_update">
+						<i class="entypo-window"></i>
+						<span>Edit Info</span>
+					</a>
+				</li>
+
+                 </ul>
+		</div>
+		<div class="main-content">
+
+			<div class="row">
+
+				<!-- Profile Info and Notifications -->
+				<div class="col-md-6 col-sm-8 clearfix">
+
+					<ul class="user-info pull-left pull-none-xsm">
+
+						<!-- Profile Info -->
+						<li class="profile-info dropdown">
+							<!-- add class "pull-right" if you want to place this from right -->
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
+								Patient：{{request.user.first_name}}
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<!-- Reverse Caret -->
+								<li class="caret"></li>
+
+								<!-- Profile sub-links -->
+								<li>
+									<a href="extra-timeline.html">
+										<i class="entypo-user"></i>
+										Edit Profile
+									</a>
+								</li>
+
+								<li>
+									<a href="mailbox.html">
+										<i class="entypo-mail"></i>
+										Inbox
+									</a>
+								</li>
+
+								<li>
+									<a href="extra-calendar.html">
+										<i class="entypo-calendar"></i>
+										Calendar
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="entypo-clipboard"></i>
+										Tasks
+									</a>
+								</li>
+							</ul>
+						</li>
+
+					</ul>
+
+					<ul class="user-info pull-left pull-right-xs pull-none-xsm">
+
+						<!-- Raw Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-attention"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+
+								<li>
+									<ul class="dropdown-menu-list scroller">
+									</ul>
+								</li>
+
+
+							</ul>
+
+						</li>
+
+						<!-- Message Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-mail"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+						<!-- Task Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-list"></i>
+								<span class="badge badge-warning"></span>
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+
+				<!-- Raw Links -->
+				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+					<ul class="list-inline links-list pull-right">
+
+						<!-- Language Selector -->
+
+						<li class="sep"></li>
+
+						<li class="sep"></li>
+
+						<li>
+							<a href="/logout">
+								Log Out <i class="entypo-logout right"></i>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<hr>
+
+
+
+     <br>
+        <br>
+        <br>
+{#<h3>#}
+{#	<span class="label label-warning"></span>#}
+{#	Recent Appointments For You <small></small>#}
+{#</h3>#}
+{#      <table class="table table-hover" id="dev-table">#}
+{#        <thead>#}
+{#          <tr>#}
+{##}
+{#            <th>Patient Name</th>#}
+{#            <th>Description</th>#}
+{#            <th>Mobile</th>#}
+{#            <th>Address</th>#}
+{#            <th>Date</th>#}
+{#          </tr>#}
+{#        </thead>#}
+{#        {% for a,p in appointments %}#}
+{#        <tr>#}
+{#          <td>{{a.patientName}}</td>#}
+{#          <td>{{a.description}}</td>#}
+{#          <td>{{p.mobile}}</td>#}
+{#          <td>{{p.address}}</td>#}
+{#          <td>{{a.appointmentDate}}</td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+{#      </table>#}
+
+
+			<br>
+		</div>
+
+	</div>
+	</div>
+	<link rel="stylesheet" href="static/css/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="static/css/rickshaw.min.css">
+
+	<!-- Bottom Scripts -->
+	<script src="static/js/main-gsap.js"></script>
+	<script src="static/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="static/js/bootstrap.js"></script>
+	<script src="static/js/joinable.js"></script>
+	<script src="static/js/resizeable.js"></script>
+	<script src="static/js/neon-api.js"></script>
+	<script src="static/js/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="static/js/jquery-jvectormap-europe-merc-en.js"></script>
+	<script src="static/js/jquery.sparkline.min.js"></script>
+	<script src="static/js/d3.v3.js"></script>
+	<script src="static/js/rickshaw.min.js"></script>
+	<script src="static/js/raphael-min.js"></script>
+	<script src="static/js/morris.min.js"></script>
+	<script src="static/js/toastr.js"></script>
+	<script src="static/js/neon-chat.js"></script>
+	<script src="static/js/neon-custom.js"></script>
+	<script src="static/js/neon-demo.js"></script>
+
+</body>
+
+</html>
