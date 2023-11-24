@@ -1,0 +1,137 @@
+/*
+Flaticon icon font
+--------------------------*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../font/Flaticon.eot");
+  src: url("../font/Flaticon.eot") format("embedded-opentype"),
+      url("../font/Flaticon.woff") format("woff"),
+      url("../font/Flaticon.ttf") format("truetype"),
+      url("../font/Flaticon.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+      font-family: "Flaticon";
+      src: url("../font/Flaticon.svg") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
+  font-family: Flaticon;
+  font-style: normal;
+}
+
+.flaticon-heart-2:before {
+  content: "\f100";
+}
+
+.flaticon-heart:before {
+  content: "\f101";
+}
+
+.flaticon-heart-1:before {
+  content: "\f102";
+}
+
+.flaticon-neurology:before {
+  content: "\f103";
+}
+
+.flaticon-x-ray:before {
+  content: "\f104";
+}
+
+.flaticon-embryo:before {
+  content: "\f105";
+}
+
+.flaticon-sperm:before {
+  content: "\f106";
+}
+
+.flaticon-sperm-1:before {
+  content: "\f107";
+}
+
+.flaticon-sperm-2:before {
+  content: "\f108";
+}
+
+.flaticon-mother:before {
+  content: "\f109";
+}
+
+.flaticon-uterus:before {
+  content: "\f10a";
+}
+
+.flaticon-surgery:before {
+  content: "\f10b";
+}
+
+.flaticon-focus:before {
+  content: "\f10c";
+}
+
+.flaticon-feeder:before {
+  content: "\f10d";
+}
+
+.flaticon-vitamins:before {
+  content: "\f10e";
+}
+
+.flaticon-drug:before {
+  content: "\f10f";
+}
+
+.flaticon-herbal:before {
+  content: "\f110";
+}
+
+.flaticon-world:before {
+  content: "\f111";
+}
+
+.flaticon-email:before {
+  content: "\f112";
+}
+
+.flaticon-24-hours:before {
+  content: "\f113";
+}
+
+.flaticon-tooth:before {
+  content: "\f114";
+}
+
+.flaticon-phone-call:before {
+  content: "\f115";
+}
+
+.flaticon-kidney:before {
+  content: "\f116";
+}
+
+.flaticon-penis:before {
+  content: "\f117";
+}
+
+.flaticon-kidney-1:before {
+  content: "\f118";
+}
+
+.flaticon-kidney-2:before {
+  content: "\f119";
+}
+
+.flaticon-traumatology:before {
+  content: "\f11a";
+}

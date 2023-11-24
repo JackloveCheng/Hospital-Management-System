@@ -1,125 +1,277 @@
-<!DOCTYPE html>
-
-{% load widget_tweaks %}
-<html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>HMS</title>
-  <style type="text/css">
-    body {
-      color: #aa082e;
-      background-color: #b6bde7;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    a:link {
-      text-decoration: none;
-    }
-
-    .note {
-      text-align: center;
-      height: 80px;
-      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
-      color: #fff;
-      font-weight: bold;
-      line-height: 80px;
-    }
-
-    .form-content {
-      padding: 5%;
-      border: 1px solid #ced4da;
-      margin-bottom: 2%;
-    }
-
-    .form-control {
-      border-radius: 1.5rem;
-    }
-
-    .btnSubmit {
-      border: none;
-      border-radius: 1.5rem;
-      padding: 1%;
-      width: 20%;
-      cursor: pointer;
-      background: #0062cc;
-      color: #fff;
-    }
-  </style>
-
-</head>
-
-
-<body>
-  {% include "hospital/navbar.html" %}
-  <br>
-  <br>
-  <br>
-  <br>
-
-
-
-
-  <!--- signup page for patient by admin(sumit)  ---------->
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="container register-form">
-      <div class="form">
-        <div class="note">
-          <p>Patient Register Page</p>
-        </div>
-
-        <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
-              </div>
-              <div class="form-group">
-                {% render_field userForm.username class="form-control" placeholder="Username" %}
-              </div>
-              <div class="form-group">
-                {% render_field patientForm.address class="form-control" placeholder="Address" %}
-              </div>
-              <div class="form-group">
-                {% render_field patientForm.symptoms class="form-control" placeholder="Symptoms" %}
-              </div>
+{#<!DOCTYPE html>#}
+{##}
+{#{% load widget_tweaks %}#}
+{#<html lang="en" dir="ltr">#}
+{##}
+{#<head>#}
+{#  <meta charset="utf-8">#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
+{#  <title>HMS</title>#}
+{#  <style type="text/css">#}
+{#    body {#}
+{#      color: #aa082e;#}
+{#      background-color: #b6bde7;#}
+{#      font-family: 'Roboto', sans-serif;#}
+{#    }#}
+{##}
+{#    a:link {#}
+{#      text-decoration: none;#}
+{#    }#}
+{##}
+{#    .note {#}
+{#      text-align: center;#}
+{#      height: 80px;#}
+{#      background: -webkit-linear-gradient(left, #0072ff, #8811c5);#}
+{#      color: #fff;#}
+{#      font-weight: bold;#}
+{#      line-height: 80px;#}
+{#    }#}
+{##}
+{#    .form-content {#}
+{#      padding: 5%;#}
+{#      border: 1px solid #ced4da;#}
+{#      margin-bottom: 2%;#}
+{#    }#}
+{##}
+{#    .form-control {#}
+{#      border-radius: 1.5rem;#}
+{#    }#}
+{##}
+{#    .btnSubmit {#}
+{#      border: none;#}
+{#      border-radius: 1.5rem;#}
+{#      padding: 1%;#}
+{#      width: 20%;#}
+{#      cursor: pointer;#}
+{#      background: #0062cc;#}
+{#      color: #fff;#}
+{#    }#}
+{#  </style>#}
+{##}
+{#</head>#}
+{##}
+{##}
+{#<body>#}
+{#  {% include "hospital/navbar.html" %}#}
+{#  <br>#}
+{#  <br>#}
+{#  <br>#}
+{#  <br>#}
+{##}
+{##}
+{##}
+{##}
+{#  <!--- signup page for patient by admin(sumit)  ---------->#}
+{#  <form method="post" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#    <div class="container register-form">#}
+{#      <div class="form">#}
+{#        <div class="note">#}
+{#          <p>Patient Register Page</p>#}
+{#        </div>#}
+{##}
+{#        <div class="form-content">#}
+{#          <div class="row">#}
+{#            <div class="col-md-6">#}
+{#              <div class="form-group">#}
+{#                {% render_field userForm.first_name class="form-control" placeholder="First Name" %}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                {% render_field userForm.username class="form-control" placeholder="Username" %}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                {% render_field patientForm.address class="form-control" placeholder="Address" %}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                {% render_field patientForm.symptoms class="form-control" placeholder="Symptoms" %}#}
+{#              </div>#}
 {#              <div class="form-group">#}
 {#                {% render_field patientForm.profile_pic required="required" class="form-control" placeholder="Profile Picture" %}#}
 {#              </div>#}
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
-              </div>
-              <div class="form-group">
-                {% render_field userForm.password class="form-control" placeholder="Password" %}
-              </div>
-              <div class="form-group">
-                {% render_field patientForm.mobile class="form-control"  placeholder="Mobile Number" %}
-              </div>
-
+{#            </div>#}
+{#            <div class="col-md-6">#}
+{#              <div class="form-group">#}
+{#                {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                {% render_field userForm.password class="form-control" placeholder="Password" %}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                {% render_field patientForm.mobile class="form-control"  placeholder="Mobile Number" %}#}
+{#              </div>#}
+{##}
 {#              <div class="form-group">#}
 {#                {% render_field patientForm.assignedDoctorId class="form-control" placeholder="Doctor" %}#}
 {#              </div>#}
+{##}
+{#            </div>#}
+{#          </div>#}
+{#          <button type="submit" class="btnSubmit">Register</button>#}
+{#          <div class="text-center">Already have an account? <a href="patientlogin">Login here</a></div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#  </form>#}
+{##}
+{#  {% include "hospital/footer.html" %}#}
+{#</body>#}
+{#<!--#}
+{#developed By : sumit kumar#}
+{#facebook : fb.com/sumit.luv#}
+{#youtube : youtube.com/lazycoders#}
+{#-->#}
+{##}
+{#</html>#}
+{% include "hospital/navbar.html" %}
 
-            </div>
-          </div>
-          <button type="submit" class="btnSubmit">Register</button>
-          <div class="text-center">Already have an account? <a href="patientlogin">Login here</a></div>
-        </div>
-      </div>
-    </div>
+<!doctype html>
+<html lang="en">
+{% load widget_tweaks %}
 
-  </form>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="static/css/css2.css" rel="stylesheet">
+	<!-- Bootstrap CSS -->
 
-  {% include "hospital/footer.html" %}
+	<link href="static/css/aos.min.css" rel="stylesheet">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/jquery.smartmenus.bootstrap-4.css" rel="stylesheet">
+	<link href="static/css/all.min.css" rel="stylesheet">
+	<link href="static/css/flaticon-icon.css" rel="stylesheet">
+	<link href="static/css/themify-icons.css" rel="stylesheet">
+	<link href="static/css/bootstrap-datepicker.min.css" rel="stylesheet">
+	<link href="static/css/select2.min.css" rel="stylesheet">
+	<link href="static/css/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+	<link href="static/css/owl.carousel.min.css" rel="stylesheet">
+	<link href="static/css/owl.theme.default.min.css" rel="stylesheet">
+	<link href="static/css/ion.rangeSlider.min.css" rel="stylesheet">
+	<link href="static/css/raty.min.css" rel="stylesheet">
+	<link href="static/css/slick.min.css" rel="stylesheet">
+	<link href="static/css/slick-theme.min.css" rel="stylesheet">
+	<link href="static/css/magnific-popup.min.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
+	<title>DocWala - Doctor Listing & Consultation HTML Template</title>
+</head>
+
+<body>
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper flex-column align-items-center justify-content-center">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-green">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p class="fs-12 fw-semibold mb-0 mt-3 text-uppercase">Please wait...</p>
+		</div>
+	</div>
+	<!-- /.Page Loader -->
+	<div class="align-items-center d-flex justify-content-center text-center vh-100">
+		<!-- /.End Home Button -->
+		<div class="container m-auto py-5">
+			<div class="row justify-content-center">
+				<div class="col-sm-10 col-lg-10">
+					<div class="align-items-center g-4 row">
+						<div class="col-lg-6 col-xl-5">
+							<!-- Start Header Text -->
+							<div class="text-center mb-4">
+								<h3 class="fw-semibold">Patient, sign up your <span class="underline position-relative text-primary">account!</span></h3>
+							</div>
+							<!-- /.End Header Text -->
+							<!-- Start Social Button Wrapper -->
+							<!-- /.End Social Button Wrapper -->
+							<!-- Start Text -->
+
+							<!-- /.End Text -->
+							<!-- Start Divider -->
+							<div class="align-items-center d-flex my-4">
+
+								<hr class="flex-grow-1 m-0"> </div>
+							<!-- /.End Divider -->
+							<form class="register-form" method="post">
+                                {% csrf_token %}
+								<!-- Start Form Group -->
+								<div class="form-group mb-4">
+									<label class="required">First Name</label>
+									<input type="text" class="form-control" value="{{ userForm.firstname.value }}" > </div>
+                                								<div class="form-group mb-4">
+									<label class="required">Last Name</label>
+									<input type="text" class="form-control" value="{{ userForm.lastname.value }}" > </div>
+								<!-- /.End Form Group -->
+								<!-- Start Form Group -->
+                                <div class="form-group mb-4">
+                                    <label class="required">Username</label>
+                                    {% render_field userForm.username class="form-control"  %} </div>
+                                <div class="form-group mb-4">
+                                    <label class="required">Password</label>
+                                    {% render_field userForm.password class="form-control"  %} </div>
+								<!-- /.End Form Group -->
+								<!-- Start Form Group -->
+
+								<!-- /.End Form Group -->
+								<!-- Start Form Group -->
+                                <div class="form-group mb-4">
+                                    <label class="required">Mobile Number</label>
+                                    {% render_field patientForm.mobile class="form-control"   %}</div>
+                                <div class="form-group mb-4">
+                                    <label class="required">Address</label>
+                                    {% render_field patientForm.address class="form-control"   %}</div>
+                                <div class="form-group mb-4">
+                                    <label class="required">Symptoms</label>
+                                      {% render_field patientForm.symptoms class="form-control"  %}</div>
+
+                                <!-- /.End Form Group -->
+								<!-- Start Checkbox -->
+
+
+								<!-- /.End Checkbox -->
+								<!-- Start Button -->
+								<button type="submit" class="btn btn-primary btn-lg w-100">Sign Up</button>
+								<!-- End Button -->
+							</form>
+							<!-- Start Bottom Text -->
+							<div class="bottom-text text-center mt-3"> Already have an account? <a href="login.html" class="fw-medium text-decoration-underline">Sign
+                  In</a> </div>
+							<!-- /.End Bottom Text -->
+						</div>
+						<div class="col-lg-6 col-xl-7 order-lg-first pe-xl-5">
+							<!-- Start Illustration Image --><img src="static/picture/login.svg" alt="" class="img-fluid">
+							<!-- /.End Illustration Image -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Optional JavaScript -->
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/bootstrap.bundle.min.js"></script>
+	<script src="static/js/jquery.smartmenus.min.js"></script>
+	<script src="static/js/jquery.smartmenus.bootstrap-4.min.js"></script>
+	<script src="static/js/bootstrap-datepicker.min.js"></script>
+	<script src="static/js/select2.min.js"></script>
+	<script src="static/js/ResizeSensor.min.js"></script>
+	<script src="static/js/theia-sticky-sidebar.min.js"></script>
+	<script src="static/js/owl.carousel.min.js"></script>
+	<script src="static/js/hideShowPassword.min.js"></script>
+	<script src="static/js/ion.rangeSlider.min.js"></script>
+	<script src="static/js/raty.min.js"></script>
+	<script src="static/js/slick.min.js"></script>
+	<script src="static/js/jquery.magnific-popup.min.js"></script>
+	<script src="static/js/vidbg.min.js"></script>
+	<script src="static/js/waypoints.min.js"></script>
+	<script src="static/js/jquery.counterup.min.js"></script>
+	<script src="static/js/typed.min.js"></script>
+	<script src="static/js/aos.min.js"></script>
+	<script src="static/js/custom.js"></script>
 </body>
-<!--
-developed By : sumit kumar
-facebook : fb.com/sumit.luv
-youtube : youtube.com/lazycoders
--->
 
 </html>
