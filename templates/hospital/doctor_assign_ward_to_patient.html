@@ -162,7 +162,7 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<!-- Search Bar -->
 				<li class="active opened active">
-					<a href="">
+					<a href="/doctor-dashboard">
 						<i class="entypo-gauge"></i>
 						<span>Dashboard</span>
 					</a>
@@ -173,14 +173,14 @@
 
 
 				<li>
-					<a href="tables-main.html">
+					<a href="/doctor-patient">
 						<i class="entypo-window"></i>
 						<span>Patient</span>
 					</a>
 				</li>
 
 				<li>
-					<a href="tables-main.html">
+					<a href="/doctor-appointment">
 						<i class="entypo-window"></i>
 						<span>Appointment</span>
 					</a>
@@ -190,7 +190,7 @@
 
                  </ul>
 		</div>
-		<div class="main-content">
+			<div class="main-content">
 
 			<div class="row">
 
@@ -205,7 +205,7 @@
 
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="/static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
-								Admin：名字待定
+								Admin：{{request.user.first_name}}
 							</a>
 
 							<ul class="dropdown-menu">
@@ -317,7 +317,7 @@
 						<li class="sep"></li>
 
 						<li>
-							<a href="extra-login.html">
+							<a href="/logout">
 								Log Out <i class="entypo-logout right"></i>
 							</a>
 						</li>
@@ -327,35 +327,61 @@
 
 			</div>
 
-            <div class="container" style="position: relative; height: 100vh;">
-                  <div class="content" style="position: absolute; top: 10%; left: 20%; font-size: 40px;">
-                    <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="container register-form" style="margin-top: 20px;">
-                <div class="form"  >
-                  <div class="note">
-
-                   </div >
-                    <p>Assign ward to this patient</p>
-                  </div>
-                  <div class="form-content">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          {% render_field patientForm.wardId class="form-control" placeholder="ward Id" %}
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btnSubmit" style="background-color: #3498db; color: #fff;">Update</button>
-                  </div>
-                </div>
-
-            </form>
-                  </div>
-                </div>
+			<hr>
 
 
+			<div class="row">
+				<div class="col-sm-3">
+
+					<div class="tile-stats tile-red">
+						<div class="icon"><i class="entypo-users"></i></div>
+                        <a href="/doctor-view-appointment">
+                          <h3 class="m-b-20">View Your Appointment</h3>
+                        </a>
+                          <br>
+					</div>
+
+				</div>
+
+
+				<div class="col-sm-3">
+
+					<div class="tile-stats tile-green">
+						<div class="icon"><i class="entypo-chart-bar"></i></div>
+                    <a href="/doctor-delete-appointment">
+                      <h3 class="m-b-20">Delete Appointment</h3>
+                    </a>
+                      <br>
+					</div>
+
+				</div>
+
+
+			</div>
+     <br>
+        <br>
+        <br>
+
+                <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Assign ward to patients</p>
+      </div>
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {% render_field patientForm.wardId class="form-control" placeholder="ward Id" %}
             </div>
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">Update</button>
+      </div>
+    </div>
+  </div>
+</form>
 
 			<br>
 		</div>
