@@ -167,7 +167,7 @@ def admin_dashboard_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_doctor_view(request):
-    return render(request,'hospital/admin_doctor.html')
+    return render(request,'hospital/admin_doctor1.html')
 
 
 
@@ -282,7 +282,7 @@ def admin_view_doctor_specialisation_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_patient_view(request):
-    return render(request,'hospital/admin_patient.html')
+    return render(request,'hospital/admin_patient1.html')
 
 
 
@@ -523,7 +523,7 @@ def download_pdf_view(request,pk):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_appointment_view(request):
-    return render(request,'hospital/admin_appointment.html')
+    return render(request,'hospital/admin_appointment1.html')
 
 
 
@@ -607,7 +607,7 @@ def reject_appointment_view(request,pk):
 @user_passes_test(is_admin)
 def admin_pharmacy_view(request):
     drugs = models.Pharmacy.objects.all()
-    return render(request, 'hospital/admin_pharmacy.html', {'drugs' : drugs})
+    return render(request, 'hospital/admin_pharmacy1.html', {'drugs' : drugs})
 
 
 @login_required(login_url='adminlogin')
@@ -622,7 +622,7 @@ def admin_treatmentrecord_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_wards_view(request):
-    return render(request,'hospital/admin_wards.html')
+    return render(request,'hospital/admin_wards1.html')
 
 
 

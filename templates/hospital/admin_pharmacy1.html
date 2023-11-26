@@ -52,8 +52,6 @@
 					</a>
 				</div>
 
-
-
 				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
 				<div class="sidebar-mobile-menu visible-xs">
 					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
@@ -61,13 +59,7 @@
 					</a>
 				</div>
 
-
 			</header>
-
-
-
-
-
 
 			<ul id="main-menu" class="">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
@@ -277,112 +269,52 @@
 
 					<div class="tile-stats tile-red">
 						<div class="icon"><i class="entypo-users"></i></div>
-						<div class="num">
-                            {{doctorcount}}
-                        </div>
-
-						<h3>Total Doctor</h3>
-						<p>Approval Required: {{pendingdoctorcount}}</p>
+                        <br>
+						<a href="/admin-add-drug">
+                            <h3 class="m-b-20">Add Drug</h3>
+                        </a>
+                        <br>
 					</div>
 
 				</div>
 
-
-				<div class="col-sm-3">
-
-					<div class="tile-stats tile-green">
-						<div class="icon"><i class="entypo-chart-bar"></i></div>
-						<div class="num">{{ patientcount }}</div>
-
-						<h3>Total Patient</h3>
-						<p>Wants to Admit: {{ pendingappointmentcount }}</p>
-					</div>
-
-				</div>
-
-				<div class="col-sm-3">
-
-					<div class="tile-stats tile-blue">
-						<div class="icon"><i class="entypo-rss"></i></div>
-						<div class="num">{{appointmentcount}}</div>
-
-						<h3>Total Appointment</h3>
-						<p>Approve Appointments:{{ pendingappointmentcount }}</p>
-					</div>
-
-				</div>
 			</div>
 
 			<br>
 
            <div class="container">
-  <div class="row">
-    <div class="panel panel-primary col-md-5" style="margin-left:2%;">
-      <div class="panel-heading" style="text-align:center;">
-        <h6 class="panel-title">Recent Doctors</h6>
-      </div>
-      <table class="table table-hover" id="dev-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Mobile</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        {% for d in doctors %}
-        <tr>
-          <td>{{d.get_name}}</td>
-          <td>{{d.department}}</td>
-          <td>{{d.mobile}}</td>
-          {%if d.status%}
-          <td> <span class="label label-primary">Permanent</span></td>
-          {% else %}
-          <td> <span class="label label-success">On Hold</span></td>
-          {% endif %}
-
-        </tr>
-        {% endfor %}
-      </table>
+               <div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Pharmacy</h6>
     </div>
-
-    <div class="panel panel-primary col-md-5" style="margin-left:5%;">
-      <div class="panel-heading" style="text-align:center;">
-        <h6 class="panel-title">Recent Patient</h6>
-      </div>
-      <table class="table table-hover" id="dev-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Symptoms</th>
-            <th>Mobile</th>
-            <th>Address</th>
-            <th>Status</th>
-
-          </tr>
-        </thead>
-        {% for p in patients %}
+    <table class="table table-hover" id="dev-table">
+      <thead>
         <tr>
-          <td> {{p.get_name}}</td>
-          <td>{{p.symptoms}}</td>
-          <td>{{p.mobile}}</td>
-          <td>{{p.address}}</td>
-          {%if p.status%}
-          <td> <span class="label label-primary">Admitted</span></td>
-          {% else %}
-          <td> <span class="label label-success">On Hold</span></td>
-          {% endif %}
-
+          <th>DrugId</th>
+{#          <th>Profile Picture</th>#}
+          <th>DrugName</th>
+          <th>Quantity</th>
         </tr>
-        {% endfor %}
-      </table>
-    </div>
+      </thead>
+      {% for p in drugs %}
+      <tr>
+        <td> {{p.drugId}}</td>
+{#        <td> <img src="{% static p.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>#}
+        <td>{{p.drugName}}</td>
+        <td>{{p.quantity}}</td>
+
+      </tr>
+      {% endfor %}
+    </table>
   </div>
 </div>
 
-		</div>
 
-	</div>
+            </div>
+
+        </div>
+    </div>
 
 
 
