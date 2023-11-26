@@ -175,7 +175,7 @@ def admin_doctor_view(request):
 @user_passes_test(is_admin)
 def admin_view_doctor_view(request):
     doctors=models.Doctor.objects.all().filter(status=True)
-    return render(request,'hospital/admin_view_doctor.html',{'doctors':doctors})
+    return render(request,'hospital/admin_view_doctor1.html',{'doctors':doctors})
 
 
 
@@ -238,7 +238,7 @@ def admin_add_doctor_view(request):
             my_doctor_group[0].user_set.add(user)
 
         return HttpResponseRedirect('admin-view-doctor')
-    return render(request,'hospital/admin_add_doctor.html',context=mydict)
+    return render(request,'hospital/admin_add_doctor1.html',context=mydict)
 
 
 
@@ -248,7 +248,7 @@ def admin_add_doctor_view(request):
 def admin_approve_doctor_view(request):
     #those whose approval are needed
     doctors=models.Doctor.objects.all().filter(status=False)
-    return render(request,'hospital/admin_approve_doctor.html',{'doctors':doctors})
+    return render(request,'hospital/admin_approve_doctor1.html',{'doctors':doctors})
 
 
 @login_required(login_url='adminlogin')
@@ -275,7 +275,7 @@ def reject_doctor_view(request,pk):
 @user_passes_test(is_admin)
 def admin_view_doctor_specialisation_view(request):
     doctors=models.Doctor.objects.all().filter(status=True)
-    return render(request,'hospital/admin_view_doctor_specialisation.html',{'doctors':doctors})
+    return render(request, 'hospital/admin_view_doctor_Specialisation1.html', {'doctors':doctors})
 
 
 

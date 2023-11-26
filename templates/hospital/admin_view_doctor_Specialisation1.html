@@ -1,65 +1,6 @@
-{#{% extends 'hospital/admin_base.html' %}#}
-{#{% block content %}#}
-{##}
-{#<head>#}
-{#  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
-{#  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>#}
-{#  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>#}
-{#  <style media="screen">#}
-{#    a:link {#}
-{#      text-decoration: none;#}
-{#    }#}
-{##}
-{#    h6 {#}
-{#      text-align: center;#}
-{#    }#}
-{##}
-{#    .row {#}
-{#      margin: 100px;#}
-{#    }#}
-{#  </style>#}
-{#</head>#}
-{#<!--#}
-{#written By : sumit kumar#}
-{#facebook : fb.com/sumit.luv#}
-{#-->#}
-{#<div class="container">#}
-{#  <div class="panel panel-primary">#}
-{#    <div class="panel-heading">#}
-{#      <h6 class="panel-title">Appointment Approvals Required</h6>#}
-{#    </div>#}
-{#    <table class="table table-hover" id="dev-table">#}
-{#      <thead>#}
-{#        <tr>#}
-{#          <th>Doctor Name</th>#}
-{#          <th>Patient Name</th>#}
-{#          <th>Description</th>#}
-{#          <th>Date</th>#}
-{#          <th>Approve</th>#}
-{#          <th>Reject</th>#}
-{#        </tr>#}
-{#      </thead>#}
-{#      {% for a in appointments %}#}
-{#      <tr>#}
-{#        <td> {{a.doctorName}}</td>#}
-{#        <td>{{a.patientName}}</td>#}
-{#        <td>{{a.description}}</td>#}
-{#        <td>{{a.appointmentDate}}</td>#}
-{#        <td><a class="btn btn-primary btn-xs" href="{% url 'approve-appointment' a.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>#}
-{#        <td><a class="btn btn-danger btn-xs" href="{% url 'reject-appointment' a.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>#}
-{#      </tr>#}
-{#      {% endfor %}#}
-{#    </table>#}
-{#  </div>#}
-{##}
-{##}
-{#</div>#}
-{##}
-{##}
-{#{% endblock content %}#}
-
-
 <!DOCTYPE html>
+{% load widget_tweaks %}
+
 <html lang="en">
 
 <head>
@@ -124,11 +65,6 @@
 
 
 			</header>
-
-
-
-
-
 
 			<ul id="main-menu" class="">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
@@ -313,52 +249,81 @@
 
 				</div>
 
-            <br>
-            <br>
-            <hr>
-                <div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h6 class="panel-title" style="font-size: 20px;font-weight: bold">Appointment Approvals Required</h6>
-    </div>
-    <table class="table table-hover" id="dev-table">
-      <thead>
-        <tr>
-          <th style="font-size: 16px">Doctor Name</thstyle>
-          <th style="font-size: 16px">Patient Name</th>
-          <th style="font-size: 16px">Description</th>
-          <th style="font-size: 16px">Date</th>
-          <th style="font-size: 16px">Approve</th>
-          <th style="font-size: 16px">Reject</th>
-        </tr>
-      </thead>
-      {% for a in appointments %}
-      <tr>
-        <td style="font-size: 16px"> {{a.doctorName}}</td>
-        <td style="font-size: 16px">{{a.patientName}}</td>
-        <td style="font-size: 16px">{{a.description}}</td>
-        <td style="font-size: 16px">{{a.appointmentDate}}</td>
-        <td style="font-size: 16px"style="font-size: 16px"><a class="btn btn-primary btn-xs" href="{% url 'approve-appointment' a.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
-        <td style="font-size: 16px"><a class="btn btn-danger btn-xs" href="{% url 'reject-appointment' a.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
 
+				<!-- Raw Links -->
+				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
 
-</div>
+					<ul class="list-inline links-list pull-right">
 
+						<!-- Language Selector -->
 
+						<li class="sep"></li>
 
+						<li class="sep"></li>
+					</ul>
 
-                   </div>
-  </div>
-</div>
-                	</div>
+				</div>
 
+			</div>
+
+			<hr>
+			<br>
+            <div class="container">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">
+                          <font size="4">
+                          ----------------------------------------------------------------------------Department & Doctors------------------------------------------------------------------------------
+                          </font>
+                      </h3>
+                    </div>
+                    <table class="table table-hover" id="dev-table">
+                      <thead>
+                        <tr>
+                          <th>
+                              <font size="3">
+                              Department
+                              </font>
+                          </th>
+                          <th>
+                              <font size="3">
+                              Doctor Name
+                              </font>
+                          </th>
+                          <th>
+                              <font size="3">
+                              Mobile
+                              </font>
+                          </th>
+                        </tr>
+                      </thead>
+                      {% for d in doctors %}
+                      <tr>
+                        <td>
+                            <font size="3">
+                            {{d.department}}
+                            </font>
+                        </td>
+                        <td>
+                            <font size="3">
+                            {{d.get_name}}
+                            </font>
+                        </td>
+                        <td>
+                            <font size="3">
+                            {{d.mobile}}
+                            </font>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </table>
+                  </div>
+            </div>
+		</div>
 	</div>
 
-                	<link rel="stylesheet" href="../../static/css/jquery-jvectormap-1.2.2.css">
+
+	<link rel="stylesheet" href="../../static/css/jquery-jvectormap-1.2.2.css">
 	<link rel="stylesheet" href="../../static/css/rickshaw.min.css">
 
 	<!-- Bottom Scripts -->

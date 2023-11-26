@@ -92,7 +92,7 @@
 	<meta name="description" content="Neon Admin Panel">
 	<meta name="author" content="">
 
-	<title>Admin | Dashboard</title>
+	<title>Admin | Add appointment</title>
 
 
 	<link rel="stylesheet" href="../../static/css/jquery-ui-1.10.3.custom.min.css">
@@ -359,18 +359,18 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              {% render_field appointmentForm.description class="form-control" placeholder="Description" %}
+              {% render_field appointmentForm.description class="form-control" style="font-size: 20px;" placeholder="Description" %}
             </div>
-            <div class="form-group">
-              {% render_field appointmentForm.doctorId class="form-control" placeholder="doctor" %}
+            <div class="form-group" >
+              {% render_field appointmentForm.doctorId class="form-control" style="font-size: 20px;height: 50px;" placeholder="doctor" %}
             </div>
               <div class="form-group">
-              {% render_field appointmentForm.patientId class="form-control" placeholder="patient" %}
+              {% render_field appointmentForm.patientId class="form-control" style="font-size: 20px;height: 50px" placeholder="patient" %}
             </div>
 
           </div>
         </div>
-        <button type="submit" class="btnSubmit">Book</button>
+        <button type="submit" class="btnSubmit" style="font-size: 20px">Book</button>
       </div>
     </div>
   </div>
