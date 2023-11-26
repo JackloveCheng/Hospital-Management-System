@@ -89,7 +89,7 @@
 	<meta name="description" content="Neon Admin Panel">
 	<meta name="author" content="">
 
-	<title>Admin | Dashboard</title>
+	<title>Doctor | Assign ward</title>
 
 
     <link rel="stylesheet" href="/static/css/jquery-ui-1.10.3.custom.min.css">
@@ -164,7 +164,9 @@
 				<li class="active opened active">
 					<a href="/doctor-dashboard">
 						<i class="entypo-gauge"></i>
+                        <font size="4">
 						<span>Dashboard</span>
+                        <font>
 					</a>
 				</li>
 
@@ -175,14 +177,18 @@
 				<li>
 					<a href="/doctor-patient">
 						<i class="entypo-window"></i>
+                        <font size="4">
 						<span>Patient</span>
+                        <font>
 					</a>
 				</li>
 
 				<li>
 					<a href="/doctor-appointment">
 						<i class="entypo-window"></i>
+                        <font size="4">
 						<span>Appointment</span>
+                        <font>
 					</a>
 				</li>
 
@@ -205,7 +211,7 @@
 
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="/static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
-								Admin：{{request.user.first_name}}
+								Doctor：{{request.user.first_name}}
 							</a>
 
 							<ul class="dropdown-menu">
@@ -367,13 +373,13 @@
   <div class="container register-form">
     <div class="form">
       <div class="note">
-        <p>Assign ward to patients</p>
+        <p style="font-size: 20px;font-weight: bold">Assign ward to patients</p>
       </div>
       <div class="form-content">
         <div class="row">
           <div class="col-md-6">
-            <div class="form-group">
-              {% render_field patientForm.wardId class="form-control" placeholder="ward Id" %}
+            <div class="form-group" >
+              {% render_field patientForm.wardId class="form-control" style="font-size: 20px;" placeholder="ward Id" %}
             </div>
           </div>
         </div>

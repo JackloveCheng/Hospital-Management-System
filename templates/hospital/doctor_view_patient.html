@@ -75,7 +75,7 @@
 	<meta name="description" content="Neon Admin Panel">
 	<meta name="author" content="">
 
-	<title>Admin | Dashboard</title>
+	<title>Doctor | View patient</title>
 
 
 	<link rel="stylesheet" href="static/css/jquery-ui-1.10.3.custom.min.css">
@@ -149,7 +149,9 @@
 				<li class="active opened active">
 					<a href="/doctor-dashboard">
 						<i class="entypo-gauge"></i>
+                        <font size="4">
 						<span>Dashboard</span>
+                        <font>
 					</a>
 				</li>
 
@@ -158,14 +160,18 @@
 				<li>
 					<a href="/doctor-patient">
 						<i class="entypo-window"></i>
+                        <font size="4">
 						<span>Patient</span>
+                        <font>
 					</a>
 				</li>
 
 				<li>
 					<a href="/doctor-appointment">
 						<i class="entypo-window"></i>
+                        <font size="4">
 						<span>Appointment</span>
+                        <font>
 					</a>
 				</li>
 
@@ -186,7 +192,7 @@
 
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
-								Admin：{{request.user.first_name}}
+								Doctor：{{request.user.first_name}}
 							</a>
 
 							<ul class="dropdown-menu">
@@ -345,7 +351,7 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Your Total Patient List</h3>
+      <h3 class="panel-title" style="font-size: 20px;font-weight: bold;">Your Total Patient List</h3>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
