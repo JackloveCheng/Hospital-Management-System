@@ -332,7 +332,7 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<!-- Search Bar -->
 				<li class="active opened active">
-					<a href="">
+					<a href="/patient-dashboard">
 						<i class="entypo-gauge"></i>
 						<span>Dashboard</span>
 					</a>
@@ -481,38 +481,135 @@
 						</li>
 
 					</ul>
+                    {%  if is_discharged %}
+<div class="user-info pull-left pull-right-xs pull-none-xsm">
+    <tr class="top">
+      <td colspan="2">
+        <table>
+         <tr>
+           <td class="title">
+            <h1>Hospital Management</h1>
+           </td>
 
-				</div>
+           <td>
+
+              Admit Date: {{admitDate}}<br>
+              Release Date: {{releaseDate}}<br>
+             Days Spent: {{daySpent}}
+           </td>
+         </tr>
+       </table>
+    </td>
+   </tr>
+       <tr class="user-info pull-left pull-right-xs pull-none-xsm">
+      <td colspan="2">
+       <table>
+          <tr>
+           <td>
+             Patient Name : {{patientName}}<br>
+              Patient Mobile : {{mobile}}<br>
+              Patient Addres : {{address}}<br>
+              Doctor Name :
+              {{assignedDoctorName}}<br>
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="heading">
+      <td>
+        Disease and Symptoms<br>
+      </td>
+      <td>
+
+      </td>
+
+    </tr>
+
+    <tr class="details">
+      <td>
+        {{symptoms}}
+      </td>
+    </tr>
+    <tr class="heading">
+      <td>
+        Item
+      </td>
+
+      <td>
+        Price
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        Room Charge of {{daySpent}} Days
+      </td>
+
+      <td>
+        {{roomCharge}}
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        Doctor Fee
+      </td>
+
+      <td>
+        {{doctorFee}}
+      </td>
+    </tr>
+
+    <tr class="item">
+      <td>
+        Medicine Cost
+      </td>
+
+      <td>
+        {{medicineCost}}
+      </td>
+    </tr>
+
+    <tr class="item last">
+      <td>
+        Other Charge
+      </td>
+
+      <td>
+        {{OtherCharge}}
+      </td>
+    </tr>
+
+    <tr class="total">
+      <td></td>
+
+      <td>
+        Total Rupees : {{total}}
+      </td>
+    </tr>
+</div>
+<br><br>
+<div class="download">
+  <a style="background:red; width:500px;" href="{% url 'download-pdf' patientId  %}">Download</a>
+</div>
 
 
-				<!-- Raw Links -->
-				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
 
-					<ul class="list-inline links-list pull-right">
+{%else%}<br><br><br>
 
-						<!-- Language Selector -->
+<h2 style="text-align:center;">You Are Not Discharged By Hospital !</h2>
+<h3 style="text-align:center;">Your Treatment Is Going On !</h3><br><br>
+<h4 style="text-align:center;">When You Will Be Discahrged. You Can Download Invoice.</h4>
+{%endif%}
 
-						<li class="sep"></li>
-
-						<li class="sep"></li>
-
-						<li>
-							<a href="/logout">
-								Log Out <i class="entypo-logout right"></i>
-							</a>
-						</li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<hr>
 
 
 
      <br>
-        <br>
+                <br>
         <br>
 {#<h3>#}
 {#	<span class="label label-warning"></span>#}

@@ -1,65 +1,6 @@
-{#{% extends 'hospital/admin_base.html' %}#}
-{#{% block content %}#}
-{##}
-{#<head>#}
-{#  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
-{#  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>#}
-{#  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>#}
-{#  <style media="screen">#}
-{#    a:link {#}
-{#      text-decoration: none;#}
-{#    }#}
-{##}
-{#    h6 {#}
-{#      text-align: center;#}
-{#    }#}
-{##}
-{#    .row {#}
-{#      margin: 100px;#}
-{#    }#}
-{#  </style>#}
-{#</head>#}
-{#<!--#}
-{#written By : sumit kumar#}
-{#facebook : fb.com/sumit.luv#}
-{#-->#}
-{#<div class="container">#}
-{#  <div class="panel panel-primary">#}
-{#    <div class="panel-heading">#}
-{#      <h6 class="panel-title">Appointment Approvals Required</h6>#}
-{#    </div>#}
-{#    <table class="table table-hover" id="dev-table">#}
-{#      <thead>#}
-{#        <tr>#}
-{#          <th>Doctor Name</th>#}
-{#          <th>Patient Name</th>#}
-{#          <th>Description</th>#}
-{#          <th>Date</th>#}
-{#          <th>Approve</th>#}
-{#          <th>Reject</th>#}
-{#        </tr>#}
-{#      </thead>#}
-{#      {% for a in appointments %}#}
-{#      <tr>#}
-{#        <td> {{a.doctorName}}</td>#}
-{#        <td>{{a.patientName}}</td>#}
-{#        <td>{{a.description}}</td>#}
-{#        <td>{{a.appointmentDate}}</td>#}
-{#        <td><a class="btn btn-primary btn-xs" href="{% url 'approve-appointment' a.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>#}
-{#        <td><a class="btn btn-danger btn-xs" href="{% url 'reject-appointment' a.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>#}
-{#      </tr>#}
-{#      {% endfor %}#}
-{#    </table>#}
-{#  </div>#}
-{##}
-{##}
-{#</div>#}
-{##}
-{##}
-{#{% endblock content %}#}
-
-
 <!DOCTYPE html>
+{% load widget_tweaks %}
+
 <html lang="en">
 
 <head>
@@ -83,6 +24,65 @@
 	<link rel="stylesheet" href="../../static/css/custom.css">
 
 	<script src="../../static/js/jquery-1.11.0.min.js"></script>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-group input {
+        font-size: 20px; /* 设置输入文字的字体大小为 18 像素 */
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-group input::placeholder {
+        font-size: 20px; /* 设置 placeholder 的字体大小为 18 像素 */
+    }
+
+
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+    <style>
+    div.form-group.small_font {
+        font-size: 30px;
+    }
+     </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 </head>
@@ -285,7 +285,6 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
 								data-close-others="true">
 								<i class="entypo-mail"></i>
-
 							</a>
 
 							<ul class="dropdown-menu">
@@ -313,52 +312,96 @@
 
 				</div>
 
-            <br>
-            <br>
-            <hr>
-                <div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h6 class="panel-title" style="font-size: 20px;font-weight: bold">Appointment Approvals Required</h6>
+
+				<!-- Raw Links -->
+				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+					<ul class="list-inline links-list pull-right">
+
+						<!-- Language Selector -->
+
+						<li class="sep"></li>
+
+						<li class="sep"></li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<hr>
+            <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>
+            <font size="4">
+            Add New Doctor To Hospital
+            </font>
+        </p>
+      </div>
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              {% render_field userForm.first_name class="form-control" style="height:45px" placeholder="First Name" %}
+            </div>
+            <div class="form-group">
+              {% render_field userForm.username class="form-control" style="height:45px" placeholder="Username" %}
+            </div>
+            <div class="form-group">
+              {% render_field doctorForm.department class="form-control" style="height:45px" placeholder="Department" %}
+            </div>
+            <div class="form-group small_font">
+              {% render_field doctorForm.address class="form-control" style="height:45px" placeholder="Address" %}
+            </div>
+
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              {% render_field userForm.last_name class="form-control" style="height:45px" placeholder="Last Name" %}
+            </div>
+            <div class="form-group">
+              {% render_field userForm.password class="form-control" style="height:45px" placeholder="Password" %}
+            </div>
+            <div class="form-group">
+              {% render_field doctorForm.mobile class="form-control" style="height:45px"  placeholder="Mobile" %}
+            </div>
+            <div class="form-group">
+              {% render_field doctorForm.profile_pic required="required" class="form-control" style="height:45px" placeholder="Profile Picture" %}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">
+            <font size="4">
+            Register
+            </font>
+        </button>
+      </div>
     </div>
-    <table class="table table-hover" id="dev-table">
-      <thead>
-        <tr>
-          <th style="font-size: 16px">Doctor Name</thstyle>
-          <th style="font-size: 16px">Patient Name</th>
-          <th style="font-size: 16px">Description</th>
-          <th style="font-size: 16px">Date</th>
-          <th style="font-size: 16px">Approve</th>
-          <th style="font-size: 16px">Reject</th>
-        </tr>
-      </thead>
-      {% for a in appointments %}
-      <tr>
-        <td style="font-size: 16px"> {{a.doctorName}}</td>
-        <td style="font-size: 16px">{{a.patientName}}</td>
-        <td style="font-size: 16px">{{a.description}}</td>
-        <td style="font-size: 16px">{{a.appointmentDate}}</td>
-        <td style="font-size: 16px"style="font-size: 16px"><a class="btn btn-primary btn-xs" href="{% url 'approve-appointment' a.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
-        <td style="font-size: 16px"><a class="btn btn-danger btn-xs" href="{% url 'reject-appointment' a.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-      </tr>
-      {% endfor %}
-    </table>
   </div>
 
-
-</div>
-
+</form>
 
 
+			<br>
 
-                   </div>
-  </div>
-</div>
-                	</div>
+
+
+		</div>
 
 	</div>
 
-                	<link rel="stylesheet" href="../../static/css/jquery-jvectormap-1.2.2.css">
+
+
+
+
+
+
+
+
+	<link rel="stylesheet" href="../../static/css/jquery-jvectormap-1.2.2.css">
 	<link rel="stylesheet" href="../../static/css/rickshaw.min.css">
 
 	<!-- Bottom Scripts -->

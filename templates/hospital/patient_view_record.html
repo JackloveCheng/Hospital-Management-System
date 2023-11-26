@@ -138,7 +138,7 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<!-- Search Bar -->
 				<li class="active opened active">
-					<a href="">
+					<a href="/patient-dashboard">
 						<i class="entypo-gauge"></i>
 						<span>Dashboard</span>
 					</a>
@@ -333,9 +333,9 @@
       {% for r in records %}
       <tr>
         <td>{{r.treatment_record_id}}</td>
-        <td>{{r.doctorId}}</td>#}
-       <td>{{r.disease}}</td>#}
-        <td>{{r.appointmentDate}}</td>#}
+        <td>{{r.doctorId}}</td>
+       <td>{{r.disease}}</td>
+        <td>{{r.appointmentDate}}</td>
       </tr>
       {% endfor %}
     </table>
