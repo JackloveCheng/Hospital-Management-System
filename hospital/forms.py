@@ -2,7 +2,11 @@ from django import forms
 from django.contrib.auth.models import User
 from . import models
 
-
+wardTypes=[
+('Normal','Normal'),
+('Operation room','Operation room'),
+('ICU','ICU'),
+]
 # for admin signup
 class AdminSigupForm(forms.ModelForm):
     class Meta:
@@ -21,6 +25,7 @@ class PharmacyForm(forms.ModelForm):
 class WardForm(forms.ModelForm):
     assignedNurseId = forms.IntegerField(initial='', required=False)
     isAssigned=forms.BooleanField(initial=False,required=False)
+    assignedType = forms.CharField(initial='', required=False)
     class Meta:
         model =models.Ward
         fields = ['WardId','WardType']
@@ -61,6 +66,7 @@ class PatientForm(forms.ModelForm):
                                               empty_label="Name and Department", to_field_name="user_id",
                                               required=False)
     wardId = forms.IntegerField(initial='', required=False)
+    wardType = forms.CharField(initial='', required=False)
 
     class Meta:
         model = models.Patient

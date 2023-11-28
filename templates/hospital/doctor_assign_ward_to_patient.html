@@ -380,8 +380,15 @@
           <div class="col-md-6">
             <div class="form-group" >
               {% render_field patientForm.wardId class="form-control" style="font-size: 20px;" placeholder="ward Id" %}
+
             </div>
               
+
+             </div>
+              <div class="form-group">
+                  {% render_field patientForm.wardType class="form-control" style="font-size: 20px;" placeholder="ward Type" %}<br>
+              </div>
+
           </div>
         </div>
         <button type="submit" class="btnSubmit">Update</button>
