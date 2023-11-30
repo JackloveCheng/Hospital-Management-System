@@ -91,7 +91,7 @@ class Ward(models.Model):
     isAssigned=models.BooleanField(default=False)
 
 class Nurse(models.Model):
-    NurseId=models.PositiveIntegerField(null=True)
+    NurseId = models.PositiveIntegerField(null=True)
     status = models.BooleanField(default=False)
 
 # 治疗记录
