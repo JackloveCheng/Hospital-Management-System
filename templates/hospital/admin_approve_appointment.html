@@ -319,27 +319,27 @@
                 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">Appointment Approvals Required</h6>
+      <h6 class="panel-title" style="font-size: 20px;font-weight: bold">Appointment Approvals Required</h6>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-          <th>Doctor Name</th>
-          <th>Patient Name</th>
-          <th>Description</th>
-          <th>Date</th>
-          <th>Approve</th>
-          <th>Reject</th>
+          <th style="font-size: 16px">Doctor Name</thstyle>
+          <th style="font-size: 16px">Patient Name</th>
+          <th style="font-size: 16px">Description</th>
+          <th style="font-size: 16px">Date</th>
+          <th style="font-size: 16px">Approve</th>
+          <th style="font-size: 16px">Reject</th>
         </tr>
       </thead>
       {% for a in appointments %}
       <tr>
-        <td> {{a.doctorName}}</td>
-        <td>{{a.patientName}}</td>
-        <td>{{a.description}}</td>
-        <td>{{a.appointmentDate}}</td>
-        <td><a class="btn btn-primary btn-xs" href="{% url 'approve-appointment' a.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
-        <td><a class="btn btn-danger btn-xs" href="{% url 'reject-appointment' a.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td style="font-size: 16px"> {{a.doctorName}}</td>
+        <td style="font-size: 16px">{{a.patientName}}</td>
+        <td style="font-size: 16px">{{a.description}}</td>
+        <td style="font-size: 16px">{{a.appointmentDate}}</td>
+        <td style="font-size: 16px"style="font-size: 16px"><a class="btn btn-primary btn-xs" href="{% url 'approve-appointment' a.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
+        <td style="font-size: 16px"><a class="btn btn-danger btn-xs" href="{% url 'reject-appointment' a.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>
       {% endfor %}
     </table>
