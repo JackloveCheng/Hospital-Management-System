@@ -175,7 +175,7 @@ youtube : youtube.com/lazycoders
 				<li class="active opened active">
 					<a href="">
 						<i class="entypo-gauge"></i>
-						<span>Dashboard</span>
+						<span style="font-size: 20px">Dashboard</span>
 					</a>
 				</li>
 
@@ -184,28 +184,28 @@ youtube : youtube.com/lazycoders
 				<li>
 					<a href="/patient-appointment">
 						<i class="entypo-window"></i>
-						<span>Appointments</span>
+						<span style="font-size: 20px">Appointments</span>
 					</a>
 				</li>
 
 				<li>
 					<a href="/patient-record">
 						<i class="entypo-window"></i>
-						<span>Treatment records</span>
+						<span style="font-size: 20px">Treatment records</span>
 					</a>
 				</li>
 
-                <li>
-					<a href="/patient-discharge">
-						<i class="entypo-window"></i>
-						<span>Discharge</span>
-					</a>
-				</li>
+{#                <li>#}
+{#					<a href="/patient-discharge">#}
+{#						<i class="entypo-window"></i>#}
+{#						<span style="font-size: 20px">Discharge</span>#}
+{#					</a>#}
+{#				</li>#}
 
                 <li>
 					<a href="/patient_self_update">
 						<i class="entypo-window"></i>
-						<span>Edit Info</span>
+						<span style="font-size: 20px">Edit Info</span>
 					</a>
 				</li>
 
@@ -226,7 +226,7 @@ youtube : youtube.com/lazycoders
 
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
-								Admin：{{request.user.first_name}}
+								Patient：{{request.user.first_name}}
 							</a>
 
 							<ul class="dropdown-menu">
@@ -338,7 +338,7 @@ youtube : youtube.com/lazycoders
 						<li class="sep"></li>
 
 						<li>
-							<a href="/logout">
+							<a href="/logout" style="font-size: 18px">
 								Log Out <i class="entypo-logout right"></i>
 							</a>
 						</li>
@@ -357,21 +357,21 @@ youtube : youtube.com/lazycoders
   <div class="container register-form">
     <div class="form">
       <div class="note">
-        <p>Book Appointment Details</p>
+        <p style="font-size: 20px; font-weight:bold;">Book Appointment Details</p>
       </div>
       <div class="form-content">
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group">
-              {% render_field appointmentForm.description class="form-control" placeholder="Description" %}
+            <div class="form-group" >
+              {% render_field appointmentForm.description class="form-control" style="font-size: 18px" placeholder="Description" %}
             </div>
-            <div class="form-group">
-              {% render_field appointmentForm.doctorId class="form-control" placeholder="doctor" %}
+            <div class="form-group" >
+              {% render_field appointmentForm.doctorId class="form-control" style="font-size: 18px" placeholder="doctor" %}
             </div>
 
           </div>
         </div>
-        <button type="submit" class="btnSubmit">Book</button>
+        <button type="submit" class="btnSubmit" style="font-size: 18px">Book</button>
       </div>
     </div>
   </div>
