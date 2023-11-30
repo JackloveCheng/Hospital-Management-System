@@ -629,8 +629,20 @@ def admin_wards_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_view_wards_view(request):
+    inputNumber = -1
+    nurse_ids = models.Nurse.objects.all().values_list('NurseId', flat=True)
+    if request.method == 'POST':
+        inputNumber = request.POST.get('inputNumber')  # 从POST请求中获取inputNumber的值
+        ward_id = request.POST.get('ward_id')  # 获取Ward的ID
+        nurse_id = request.POST.get('inputNumber')  # 获取选中的NurseId
+
+        ward = models.Ward.objects.get(WardId=ward_id)
+        ward.assignedNurseId = nurse_id
+        ward.save()
+
+        return redirect('admin-view-wards')
     wards=models.Ward.objects.all()
-    return render(request,'hospital/admin_view_wards.html',{'wards':wards})
+    return render(request,'hospital/admin_view_wards.html',{'wards':wards, 'inputNumber':inputNumber, 'nurse_ids': nurse_ids})
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)

@@ -5,7 +5,6 @@
 __pycache__
 db.sqlite3
 media
-
 # Backup files #
 *.bak
 
@@ -111,7 +110,10 @@ GitHub.sublime-settings
 
 ./hospital/migrations/0019_nurse_ward_remove_doctor_profile_pic_and_more.py
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 352ab470405a62b8332733b1a94fa22e48077063
 hospital/migrations/
 hospital/migrations/0019_nurse_ward_remove_doctor_profile_pic_and_more.py
 hospital/migrations/0020_patient_assigneddoctorid.py
@@ -119,6 +121,9 @@ hospital/migrations/0021_patient_wardid.py
 
 hospital\migrations
 
+<<<<<<< HEAD
+=======
 hospital/__pycache__/apps.cpython-310.pyc
 *.pyc
 
+>>>>>>> 352ab470405a62b8332733b1a94fa22e48077063

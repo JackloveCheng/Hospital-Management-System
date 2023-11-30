@@ -346,7 +346,12 @@
             {{d.department}}
             </font>
         </td>
-        <td><a class="btn btn-primary btn-xs" href="{% url 'update-doctor' d.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td><td><a class="btn btn-danger btn-xs" href="{% url 'delete-doctor-from-hospital' d.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td><a class="btn btn-primary btn-xs" href="{% url 'update-doctor' d.id  %}">
+            <span class="glyphicon glyphicon-edit"></span></a>
+        </td><td><a class="btn btn-danger btn-xs" href="{% url 'delete-doctor-from-hospital' d.id  %}">
+          <span class="glyphicon glyphicon-trash">
+
+          </span></a></td>
 
       </tr>
       {% endfor %}

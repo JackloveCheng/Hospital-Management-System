@@ -1,67 +1,4 @@
-{#{% extends 'hospital/admin_base.html' %}#}
-{#{% block content %}#}
-{#{%load static%}#}
-{##}
-{#<head>#}
-{#  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
-{#  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>#}
-{#  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>#}
-{##}
-{#  <style media="screen">#}
-{#    a:link {#}
-{#      text-decoration: none;#}
-{#    }#}
-{##}
-{#    h6 {#}
-{#      text-align: center;#}
-{#    }#}
-{##}
-{#    .row {#}
-{#      margin: 100px;#}
-{#    }#}
-{#  </style>#}
-{#</head>#}
-{#<!--#}
-{#written By : sumit kumar#}
-{#facebook : fb.com/sumit.luv#}
-{#-->#}
-{#<div class="container">#}
-{#  <div class="panel panel-primary">#}
-{#    <div class="panel-heading">#}
-{#      <h6 class="panel-title">Doctors</h6>#}
-{#    </div>#}
-{#    <table class="table table-hover" id="dev-table">#}
-{#      <thead>#}
-{#        <tr>#}
-{##}
-{#          <th>WardId</th>#}
-{#          <th>WardType</th>#}
-{#          <th>assignedNurseId</th>#}
-{#          <th>isAssigned</th>#}
-{#        </tr>#}
-{#      </thead>#}
-{#      {% for w in wards %}#}
-{#      <tr>#}
-{##}
-{#        <td> {{w.WardId}}</td>#}
-{#        <td> <img src="{% static d.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>#}
-{#        <td>{{w.WardType}}</td>#}
-{#        <td>{{w.assignedNurseId}}</td>#}
-{#        <td>{{w.isAssigned}}</td>#}
-{#      <td><a class="btn btn-primary btn-xs" href="{% url 'update-doctor' d.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>#}
-{#       <td><a class="btn btn-danger btn-xs" href="{% url 'delete-doctor-from-hospital' d.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>#}
-{#      </tr>#}
-{#      {% endfor %}#}
-{#    </table>#}
-{#  </div>#}
-{#</div>#}
-{#<!--#}
-{#developed By : sumit kumar#}
-{#facebook : fb.com/sumit.luv#}
-{#youtube : youtube.com/lazycoders#}
-{#-->#}
-{##}
-{#{% endblock content %}#}
+
 
 
 <!DOCTYPE html>
@@ -395,6 +332,7 @@
           <th style="font-size:16px">WardType</th>
           <th style="font-size:16px">assignedNurseId</th>
           <th style="font-size:16px">isAssigned</th>
+            <th style="font-size:16px">Distribute Nurse</th>
         </tr>
       </thead>
       {% for w in wards %}
@@ -404,10 +342,29 @@
         <td style="font-size:16px">{{w.WardType}}</td>
         <td style="font-size:16px">{{w.assignedNurseId}}</td>
         <td style="font-size:16px">{{w.isAssigned}}</td>
+        <td style="font-size:16px">
+      <form method="POST" name="inputNumber">
+  {% csrf_token %}
+  <input type="hidden" name="ward_id" value="{{ w.WardId }}">
+  <select id="inputNumber" name="inputNumber">
+    <option value="{{ w.assignedNurseId }}">{{ w.assignedNurseId }}</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  <button type="submit">Save</button>
+</form>
+    </td>
 
       </tr>
       {% endfor %}
     </table>
+
+
+
   </div>
 
 </div>

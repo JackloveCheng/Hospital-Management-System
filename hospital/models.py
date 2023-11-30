@@ -94,7 +94,7 @@ class Ward(models.Model):
         return "{} ({})".format(self.WardId,self.WardType)
 
 class Nurse(models.Model):
-    NurseId=models.PositiveIntegerField(null=True)
+    NurseId = models.PositiveIntegerField(null=True)
     status = models.BooleanField(default=False)
 
 # 治疗记录
