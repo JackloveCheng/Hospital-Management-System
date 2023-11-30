@@ -44,7 +44,6 @@ class Patient(models.Model):
     admitDate=models.DateField(auto_now=True)
     status=models.BooleanField(default=False)
     wardId=models.PositiveIntegerField(null=True)
-    wardType = models.CharField(max_length=30, choices=wardTypes, default='Normal')
 
     @property
     def get_name(self):
