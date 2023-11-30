@@ -1,14 +1,15 @@
-
 <!DOCTYPE html>
-
+<html lang="en">
 {% load widget_tweaks %}
-<html lang="en" dir="ltr">
 
+
+{% load static %}
 <head>
-  <meta charset="utf-8">
+
+      <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>HMS</title>
-  <style type="text/css">
+      <style type="text/css">
     body {
       color: #aa082e;
       background-color: #b6bde7;
@@ -47,52 +48,433 @@
       background: #0062cc;
       color: #fff;
     }
+
+    .form-group input{
+    font-size: 18px;
+}
+
+    .center-table {
+    margin: 0 auto;
+}
+
+.center-table td {
+    text-align: center;
+}
+
   </style>
+    	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="{% static 'css/css2.css' %}" rel="stylesheet">
+	<!-- Bootstrap CSS -->
+
+	<link href="{% static 'css/aos.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery.smartmenus.bootstrap-4.css' %}" rel="stylesheet">
+    <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/flaticon-icon.css' %}" rel="stylesheet">
+    <link href="{% static 'css/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/select2-bootstrap-5-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ion.rangeSlider.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/raty.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slick.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slick-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/magnific-popup.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<title>Hospital Management System</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Neon Admin Panel">
+	<meta name="author" content="">
+
+	<title>Admin | Dashboard</title>
+
+
+	<link rel="stylesheet" href="../../static/css/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="../../static/css/entypo.css">
+	<link rel="stylesheet" href="../../static/css/css.css">
+	<link rel="stylesheet" href="../../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../../static/css/neon-core.css">
+	<link rel="stylesheet" href="../../static/css/neon-theme.css">
+	<link rel="stylesheet" href="../../static/css/neon-forms.css">
+	<link rel="stylesheet" href="../../static/css/custom.css">
+
+	<script src="../../static/js/jquery-1.11.0.min.js"></script>
+
 
 </head>
 
+<body class="page-body  page-fade" data-url="http://sc.chinaz.com">
+
+	<div class="page-container">
+		<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+		<div class="sidebar-menu">
 
 
+			<header class="logo-env">
 
-<body>
-  {% include "hospital/navbar.html" %}
-  <br>
-  <br>
-  <br>
-  <br>
-<!--- signup page for patient by admin(sumit)  ---------->
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="container register-form">
-      <div class="form">
-        <div class="note">
-          <p>Drug Add Page</p>
-        </div>
+				<!-- logo -->
+				<div class="logo">
+					<a href="">
+						<img src="../../static/picture/logo@2x.png" width="120" alt="">
+					</a>
+				</div>
 
-        <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                {% render_field drugForm.drugId class="form-control" placeholder="Drug Id" %}
-              </div>
-              <div class="form-group">
-                {% render_field drugForm.drugName class="form-control" placeholder="Drug Name" %}
-              </div>
-              <div class="form-group">
-                {% render_field drugForm.quantity class="form-control" placeholder="Quantity" %}
-              </div>
-            </div>
+				<!-- logo collapse icon -->
 
+				<div class="sidebar-collapse">
+					<a href="#"
+						class="sidebar-collapse-icon with-animation"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+				<div class="sidebar-mobile-menu visible-xs">
+					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+			</header>
+
+			<ul id="main-menu" class="">
+				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
+				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+				<!-- Search Bar -->
+				<li class="active opened active">
+					<a href="">
+						<i class="entypo-gauge"></i>
+						<span>
+                            <font size="4" >
+                                    DashBoard
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+
+				<li>
+					<a href="/admin-doctor">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Doctor
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+
+				<li>
+					<a href="/admin-patient">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Patient
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/admin-appointment">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Appointment
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+
+				<li>
+					<a href="/admin-pharmacy">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Pharmacy
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/admin-treatmentrecord">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    TreatmentRecord
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/admin-wards">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Ward
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+                <li>
+					<a href="/logout">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Logout
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+		</div>
+		<div class="main-content">
+
+			<div class="row">
+
+				<!-- Profile Info and Notifications -->
+				<div class="col-md-6 col-sm-8 clearfix">
+
+					<ul class="user-info pull-left pull-none-xsm">
+
+						<!-- Profile Info -->
+						<li class="profile-info dropdown">
+							<!-- add class "pull-right" if you want to place this from right -->
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="../../static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
+                                <font size="4">
+                                    Admin：{{request.user.first_name}} {{ request.user.last_name}}
+                                </font>
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<!-- Reverse Caret -->
+								<li class="caret"></li>
+
+							</ul>
+						</li>
+
+					</ul>
+
+					<ul class="user-info pull-left pull-right-xs pull-none-xsm">
+
+						<!-- Raw Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-attention"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<li>
+									<ul class="dropdown-menu-list scroller">
+									</ul>
+								</li>
+
+
+							</ul>
+
+						</li>
+
+						<!-- Message Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-mail"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+						<!-- Task Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-list"></i>
+								<span class="badge badge-warning"></span>
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+
+				<!-- Raw Links -->
+				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+					<ul class="list-inline links-list pull-right">
+
+						<!-- Language Selector -->
+
+						<li class="sep"></li>
+
+						<li class="sep"></li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<hr>
+
+
+			<div class="row">
+				<div class="col-sm-3">
+
+					<div class="tile-stats tile-red">
+						<div class="icon"><i class="entypo-users"></i></div>
+                        <br>
+						<a href="/admin-add-drug">
+                            <h3 class="m-b-20">Add Drug</h3>
+                        </a>
+                        <br>
+					</div>
+
+				</div>
+
+                <div class="col-sm-3">
+
+					<div class="tile-stats tile-red">
+						<div class="icon"><i class="entypo-users"></i></div>
+                        <br>
+						<a href="/admin-pharmacy">
+                            <h3 class="m-b-20">Show Drug List</h3>
+                        </a>
+                        <br>
+					</div>
+
+				</div>
+
+			</div>
+
+			<br>
+
+<div class="container register-form" style="font-size: 16px">
+  <div class="form">
+    <div class="note">
+    <p style="font-size: 20px;">Drug Add Page</p>
+    </div>
+    <div class="form-content">
+      <div class="row justify-content-center"> <!-- 新增的 div 元素 -->
+        <div class="col-md-6">
+          <div class="form-group">
+            {% render_field userForm.first_name class="form-control" style="height: 45px" placeholder="First Name" %}
           </div>
-          <button type="submit" class="btnSubmit">Add Drug</button>
+          <div class="form-group">
+            {% render_field drugForm.drugId class="form-control" placeholder="Drug Id" %}
+          </div>
+          <div class="form-group">
+            {% render_field drugForm.drugName class="form-control" placeholder="Drug Name" %}
+          </div>
+          <div class="form-group">
+            {% render_field drugForm.quantity class="form-control" placeholder="Quantity" %}
+          </div>
         </div>
-      </div>
+      </div> <!-- 结束新增的 div 元素 -->
+            <div class="text-center"> <!-- 居中按钮的容器 -->
+      <button type="submit" class="btnSubmit" style="width: 300px; height: 45px">Admit</button>
+    </div>
     </div>
 
-  </form>
+  </div>
+</div>
 
+
+{#           <div class="container">#}
+{#                 <form method="post" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#    <div class="container register-form">#}
+{#      <div class="form">#}
+{#        <div class="note">#}
+{#          <p>Drug Add Page</p>#}
+{#        </div>#}
+{##}
+{#        <div class="form-content">#}
+{#          <div class="row">#}
+{#            <div class="col-md-6">#}
+{#              <div class="form-group">#}
+{#                {% render_field drugForm.drugId class="form-control" placeholder="Drug Id" %}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                {% render_field drugForm.drugName class="form-control" placeholder="Drug Name" %}#}
+{#              </div>#}
+{#              <div class="form-group">#}
+{#                {% render_field drugForm.quantity class="form-control" placeholder="Quantity" %}#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#          </div>#}
+{#          <button type="submit" class="btnSubmit">Add Drug</button>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#  </form>#}
+{##}
+{##}
+{#            </div>#}
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+	<link rel="stylesheet" href="../../static/css/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="../../static/css/rickshaw.min.css">
+
+	<!-- Bottom Scripts -->
+	<script src="../../static/js/main-gsap.js"></script>
+	<script src="../../static/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="../../static/js/bootstrap.js"></script>
+	<script src="../../static/js/joinable.js"></script>
+	<script src="../../static/js/resizeable.js"></script>
+	<script src="../../static/js/neon-api.js"></script>
+	<script src="../../static/js/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="../../static/js/jquery-jvectormap-europe-merc-en.js"></script>
+	<script src="../../static/js/jquery.sparkline.min.js"></script>
+	<script src="../../static/js/d3.v3.js"></script>
+	<script src="../../static/js/rickshaw.min.js"></script>
+	<script src="../../static/js/raphael-min.js"></script>
+	<script src="../../static/js/morris.min.js"></script>
+	<script src="../../static/js/toastr.js"></script>
+	<script src="../../static/js/neon-chat.js"></script>
+	<script src="../../static/js/neon-custom.js"></script>
+	<script src="../../static/js/neon-demo.js"></script>
 
 </body>
-
 
 </html>

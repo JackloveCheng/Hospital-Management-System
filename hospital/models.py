@@ -45,7 +45,6 @@ class Patient(models.Model):
     status=models.BooleanField(default=False)
     wardId=models.PositiveIntegerField(null=True)
 
-
     @property
     def get_name(self):
         return self.user.first_name+" "+self.user.last_name
