@@ -315,7 +315,7 @@
 	<meta name="description" content="Neon Admin Panel">
 	<meta name="author" content="">
 
-	<title>Admin | Dashboard</title>
+	<title>Patient | Update</title>
 
 
 	<link rel="stylesheet" href="../../static/css/jquery-ui-1.10.3.custom.min.css">
@@ -387,7 +387,7 @@
         .form-container {
     width: 30%; /* 或者你想要的宽度 */
     margin: 0 auto;
-        margin-left: 10%
+    margin-left: 10%
 }
 
 .center-table td {
@@ -453,14 +453,17 @@
 
 
 
-            <ul id="main-menu" class="">
+
+
+
+			 <ul id="main-menu" class="">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<!-- Search Bar -->
 				<li class="active opened active">
 					<a href="/patient-dashboard">
 						<i class="entypo-gauge"></i>
-						<span>Dashboard</span>
+						<span style="font-size: 20px">Dashboard</span>
 					</a>
 				</li>
 
@@ -469,33 +472,173 @@
 				<li>
 					<a href="/patient-appointment">
 						<i class="entypo-window"></i>
-						<span>Appointments</span>
+						<span style="font-size: 20px">Appointments</span>
 					</a>
 				</li>
 
 				<li>
 					<a href="/patient-record">
 						<i class="entypo-window"></i>
-						<span>Treatment records</span>
+						<span style="font-size: 20px">Treatment records</span>
 					</a>
 				</li>
 
-                <li>
-					<a href="/patient-discharge">
-						<i class="entypo-window"></i>
-						<span>Discharge</span>
-					</a>
-				</li>
+{#                <li>#}
+{#					<a href="/patient-discharge">#}
+{#						<i class="entypo-window"></i>#}
+{#						<span style="font-size: 20px">Discharge</span>#}
+{#					</a>#}
+{#				</li>#}
 
                 <li>
 					<a href="/patient_self_update">
 						<i class="entypo-window"></i>
-						<span>Edit Info</span>
+						<span style="font-size: 20px">Edit Info</span>
 					</a>
 				</li>
 
                  </ul>
 		</div>
+		<div class="main-content">
+
+			<div class="row">
+
+				<!-- Profile Info and Notifications -->
+				<div class="col-md-6 col-sm-8 clearfix">
+
+					<ul class="user-info pull-left pull-none-xsm">
+
+						<!-- Profile Info -->
+						<li class="profile-info dropdown">
+							<!-- add class "pull-right" if you want to place this from right -->
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
+								Patient：{{request.user.first_name}}
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<!-- Reverse Caret -->
+								<li class="caret"></li>
+
+								<!-- Profile sub-links -->
+								<li>
+									<a href="extra-timeline.html">
+										<i class="entypo-user"></i>
+										Edit Profile
+									</a>
+								</li>
+
+								<li>
+									<a href="mailbox.html">
+										<i class="entypo-mail"></i>
+										Inbox
+									</a>
+								</li>
+
+								<li>
+									<a href="extra-calendar.html">
+										<i class="entypo-calendar"></i>
+										Calendar
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="entypo-clipboard"></i>
+										Tasks
+									</a>
+								</li>
+							</ul>
+						</li>
+
+					</ul>
+
+					<ul class="user-info pull-left pull-right-xs pull-none-xsm">
+
+						<!-- Raw Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-attention"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+
+								<li>
+									<ul class="dropdown-menu-list scroller">
+									</ul>
+								</li>
+
+
+							</ul>
+
+						</li>
+
+						<!-- Message Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-mail"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+						<!-- Task Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-list"></i>
+								<span class="badge badge-warning"></span>
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+
+				<!-- Raw Links -->
+				<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+					<ul class="list-inline links-list pull-right">
+
+						<!-- Language Selector -->
+
+						<li class="sep"></li>
+
+						<li class="sep"></li>
+
+						<li>
+							<a href="/logout" style="font-size: 18px">
+								Log Out <i class="entypo-logout right"></i>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<hr>
+
+			<hr>
         <div class="main-content">
 
                        <div class="form-container">
