@@ -90,6 +90,9 @@ class Ward(models.Model):
     assignedNurseId=models.PositiveIntegerField(null=True)
     isAssigned=models.BooleanField(default=False)
 
+    def __str__(self):
+        return "{} ({})".format(self.WardId,self.WardType)
+
 class Nurse(models.Model):
     NurseId=models.PositiveIntegerField(null=True)
     status = models.BooleanField(default=False)

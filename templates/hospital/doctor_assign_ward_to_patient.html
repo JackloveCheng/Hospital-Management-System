@@ -112,7 +112,89 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
 
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+    .form-container {
+    width: 50%; /* 或者你想要的宽度 */
+    margin: 0 auto;
+        margin-left: 10%
+}
+    .form-control {
+      border-radius: 1.5rem;
+          margin: 0 auto;
+  text-align: center;
+    }
+.form-group input{
+    font-size: 18px;
+}
+
+    .btnSubmit {
+          margin: 0 auto;
+  text-align: center;
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+    .center-table {
+    margin: 0 auto;
+}
+
+.center-table td {
+    text-align: center;
+}
+
+
+
+        .form-container {
+    width: 30%; /* 或者你想要的宽度 */
+    margin: 0 auto;
+        margin-left: 10%
+}
+
+.center-table td {
+    text-align: center;
+
+}
+.form-control::placeholder {
+    font-size: 18px;
+}
+
+    .custom-field {
+        height: 35px; /* 设置为你想要的宽度 */
+    }
+
+    p {
+        font-size: 20px; /* 改变<p>标签中文字大小为 24 像素 */
+    }
+
+  </style>
 </head>
 
 <body class="page-body  page-fade" data-url="http://sc.chinaz.com">
@@ -367,35 +449,66 @@
      <br>
         <br>
         <br>
-
-                <form method="post" enctype="multipart/form-data">
+  <div class="form-container">
+               <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <div class="container register-form">
+  <div class="container register-form" style="font-size: 16px">
     <div class="form">
       <div class="note">
-        <p style="font-size: 20px;font-weight: bold">Assign ward to patients</p>
+        <p>Assign Ward for patient</p>
       </div>
       <div class="form-content">
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group" >
-              {% render_field patientForm.wardId class="form-control" style="font-size: 20px;" placeholder="ward Id" %}
 
-            </div>
-              
-
-             </div>
-              <div class="form-group">
-                  {% render_field patientForm.wardType class="form-control" style="font-size: 20px;" placeholder="ward Type" %}<br>
-              </div>
-
-          </div>
+            <div class="form-group">
+                  {% render_field wardForm.WardId class="form-control" style="height: 45px; width: 500px;  font-size: 18px" placeholder="Ward id" %}
+                </div>
+            <br>
+            <br>
         </div>
-        <button type="submit" class="btnSubmit">Update</button>
+          <table class="center-table">
+              <tr>
+                        <td>
+                              <button type="submit" class="btnSubmit" style="width: 300px; height: 45px ">Submit</button>
+                        </td>
+                    </tr>
+
+          </table>
       </div>
     </div>
   </div>
+
 </form>
+
+</div>
+{#                <form method="post" enctype="multipart/form-data">#}
+{#  {% csrf_token %}#}
+{#  <div class="container register-form">#}
+{#    <div class="form">#}
+{#      <div class="note">#}
+{#        <p style="font-size: 20px;font-weight: bold">Assign ward to patients</p>#}
+{#      </div>#}
+{#      <div class="form-content" >#}
+{#        <div class="row">#}
+{#          <div class="col-md-6" >#}
+{##}
+{#            <div class="form-group"  >#}
+{#              {% render_field wardForm.WardId class="form-control" style=" height: 50px; font-size: 20px;" placeholder="ward Id" %}#}
+{##}
+{#            </div>#}
+{##}
+{#              <br>#}
+{##}
+{#             </div>#}
+{##}
+{##}
+{#          </div>#}
+{#          <button type="submit" class="btnSubmit">Update</button>#}
+{#        </div>#}
+{##}
+{#      </div>#}
+{#    </div>#}
+{#</form>#}
 
 			<br>
 		</div>

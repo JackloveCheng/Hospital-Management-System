@@ -31,6 +31,13 @@ class WardForm(forms.ModelForm):
         fields = ['WardId','WardType']
 
 
+class DoctorAssignWardForm(forms.ModelForm):
+    WardId = forms.ModelChoiceField(queryset=models.Ward.objects.all().filter(isAssigned=False),
+                                    empty_label="Ward Id and ward Type"
+                                    ,to_field_name="WardId")
+    class Meta:
+        model=models.Ward
+        fields=[]
 
 # for student related form
 class DoctorUserForm(forms.ModelForm):

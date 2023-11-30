@@ -768,13 +768,17 @@ def delete_appointment_view(request,pk):
 def doctor_assign_ward_to_patient(request,pk):
     appointment=models.Appointment.objects.get(id=pk)
     patient=models.Patient.objects.get(user_id=appointment.patientId)
-    patientForm=forms.PatientForm(request.FILES,instance=patient)
+    wardForm=forms.DoctorAssignWardForm(request.FILES,instance=patient)
 
-    mydict = {'patientForm': patientForm}
+    mydict = {'wardForm': wardForm}
     if request.method=='POST':
-        patientForm = forms.PatientForm(request.POST, request.FILES, instance=patient)
-        if request.POST.get('wardId')!="":
-            patient.wardId=request.POST.get('wardId')
+        wardForm = forms.DoctorAssignWardForm(request.POST, request.FILES, instance=patient)
+        if request.POST.get('WardId')!="":
+            ward_id=request.POST.get('WardId')
+            patient.wardId=ward_id
+            ward=models.Ward.objects.get(WardId=ward_id)
+            ward.isAssigned=True
+            ward.save()
             patient.save()
             return redirect('doctor-view-appointment')
     return render(request,'hospital/doctor_assign_ward_to_patient.html',mydict)
