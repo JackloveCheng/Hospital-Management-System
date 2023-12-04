@@ -592,8 +592,6 @@ def approve_appointment_view(request,pk):
     new_treatment_record.save()
     return redirect(reverse('admin-approve-appointment'))
 
-
-
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def reject_appointment_view(request,pk):
