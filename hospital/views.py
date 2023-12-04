@@ -210,7 +210,7 @@ def update_doctor_view(request,pk):
             doctor.status=True
             doctor.save()
             return redirect('admin-view-doctor')
-    return render(request,'hospital/admin_update_doctor.html',context=mydict)
+    return render(request,'hospital/admin_update_doctor1.html',context=mydict)
 
 
 
