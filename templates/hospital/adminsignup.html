@@ -76,33 +76,22 @@
 								<!-- Start Form Group -->
 								<div class="form-group mb-4">
 									<label class="required">First Name</label>
-									<input type="text" class="form-control" value="{{ userForm.firstname.value }}" > </div>
+									<input type="text" class="form-control" value="{{ form.firstname.value }}" > </div>
                                 								<div class="form-group mb-4">
 									<label class="required">Last Name</label>
-									<input type="text" class="form-control" value="{{ userForm.lastname.value }}" > </div>
+									<input type="text" class="form-control" value="{{ form.lastname.value }}" > </div>
 								<!-- /.End Form Group -->
 								<!-- Start Form Group -->
                                 <div class="form-group mb-4">
                                     <label class="required">Username</label>
-                                    {% render_field userForm.username class="form-control"  %} </div>
+                                    {% render_field form.username class="form-control"  %} </div>
                                 <div class="form-group mb-4">
                                     <label class="required">Password</label>
-                                    {% render_field userForm.password class="form-control"  %} </div>
+                                    {% render_field form.password class="form-control"  %} </div>
 								<!-- /.End Form Group -->
 								<!-- Start Form Group -->
 
 								<!-- /.End Form Group -->
-								<!-- Start Form Group -->
-                                <div class="form-group mb-4">
-                                    <label class="required">Mobile Number</label>
-                                    {% render_field patientForm.mobile class="form-control"   %}</div>
-                                <div class="form-group mb-4">
-                                    <label class="required">Address</label>
-                                    {% render_field patientForm.address class="form-control"   %}</div>
-                                <div class="form-group mb-4">
-                                    <label class="required">Symptoms</label>
-                                      {% render_field patientForm.symptoms class="form-control"  %}</div>
-
                                 <!-- /.End Form Group -->
 								<!-- Start Checkbox -->
 
@@ -113,7 +102,7 @@
 								<!-- End Button -->
 							</form>
 							<!-- Start Bottom Text -->
-							<div class="bottom-text text-center mt-3"> Already have an account? <a href="login.html" class="fw-medium text-decoration-underline">Sign
+							<div class="bottom-text text-center mt-3"> Already have an account? <a href="adminlogin" class="fw-medium text-decoration-underline">Sign
                   In</a> </div>
 							<!-- /.End Bottom Text -->
 						</div>

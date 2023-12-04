@@ -1,6 +1,7 @@
+
 <!DOCTYPE html>
+{% load static %}
 {% load widget_tweaks %}
-<html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8">
@@ -9,40 +10,11 @@
 
 
   <style type="text/css">
-    body {
-      color: #aa082e;
-      background-color: #b6bde7;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    a:link {
-      text-decoration: none;
-    }
-
-    .note {
-      text-align: center;
-      height: 80px;
-      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
-      color: #fff;
-      font-weight: bold;
-      line-height: 80px;
-    }
-
-    .form-content {
-      padding: 5%;
-      border: 1px solid #ced4da;
-      margin-bottom: 2%;
-    }
-
-    .form-control {
-      border-radius: 1.5rem;
-    }
-
     .btnSubmit {
       border: none;
       border-radius: 1.5rem;
       padding: 1%;
-      width: 20%;
+      width: 380px;
       cursor: pointer;
       background: #0062cc;
       color: #fff;
@@ -50,46 +22,80 @@
   </style>
 </head>
 
-<body>
-  {% include "hospital/navbar.html" %}
-  <br>
-  <br>
-  <br><br>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Home</title>
+<link rel="stylesheet" href="{% static 'nicepage.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'Home.css' %}" media="screen">
+<script class="u-script" type="text/javascript" src="{% static 'jquery.js' %}" defer=""></script>
+<script class="u-script" type="text/javascript" src="{% static 'nicepage.js' %}" defer=""></script>
+    <meta name="generator" content="Nicepage 6.0.3, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
 
-  <!--- login page for admin by admin(sumit)  ---------->
-  <form method="post">
-    {% csrf_token %}
-    <div class="container register-form">
-      <div class="form">
-        <div class="note">
-          <p>Admin Login Page</p>
-        </div>
 
-        <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
 
-              <div class="form-group">
-                {% render_field form.username class="form-control" placeholder="Username" %}
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-51be"><div class="u-clearfix u-sheet u-sheet-1"></div
+      {% include "hospital/navbar.html" %}
+
+    <section class="u-align-center u-clearfix u-section-1" id="carousel_62be">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="data-layout-selected u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-center u-container-style u-image u-layout-cell u-size-30 u-image-1" data-image-width="714" data-image-height="1080">
+                <div class="u-container-layout u-container-layout-1"></div>
               </div>
+              <div class="u-align-center u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <h3 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Log in</h3>
+                  <div class="u-form u-login-control u-white u-form-1">
+                    <form action="#" class="u-clearfix u-form-custom-backend u-form-spacing-20 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 30px;" method="post">
+                        {% csrf_token %}
+                      <div class="u-form-group u-form-name">
+                        <label for="username-a30d" class="u-label">Username *</label>
+                          {% render_field form.username required="" class="u-grey-5 u-input u-input-rectangle u-input-1" id="username-a30d" name="username" placeholder="Enter your Username" %}
+                      </div>
+                      <div class="u-form-group u-form-password">
+                        <label for="password-a30d" class="u-label">Password *</label>
+                        {% render_field form.password class="form-control" placeholder="Password" placeholder="Enter your Password" id="password-a30d" name="password" class="u-grey-5 u-input u-input-rectangle u-input-2" required=""%}
+                      </div>
 
-            </div>
-            <div class="col-md-6">
+                      <div class="u-align-left u-form-group u-form-submit">
+                           <br>
 
-              <div class="form-group">
-                {% render_field form.password class="form-control" placeholder="Password" %}
+
+                          <button type="submit" class="btnSubmit">Login</button>
+{#                          <input type="submit" value="submit" class="u-form-control-hidden">#}
+                      </div>
+
+                    </form>
+                  </div>
+                  <a href="adminsignup" class="u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-login-control u-login-create-account u-none u-text-grey-40 u-text-hover-palette-4-base u-btn-3">Don't have an account?</a>
+                </div>
               </div>
-
             </div>
           </div>
-          <button type="submit" class="btnSubmit">Login</button>
-          <div class="text-center">Do not have account? <a href="adminsignup">Register here</a></div>
         </div>
       </div>
-    </div>
-  </form>
-  {% include "hospital/navbar.html" %}
-</body>
-</html>
+    </section>
 
 
+
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-5527"><div class="u-clearfix u-sheet u-sheet-1"></div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+    </section>
+
+</body></html>
