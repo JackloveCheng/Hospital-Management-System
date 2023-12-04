@@ -592,6 +592,8 @@ def approve_appointment_view(request,pk):
     new_treatment_record.save()
     return redirect(reverse('admin-approve-appointment'))
 
+
+
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def reject_appointment_view(request,pk):
@@ -633,11 +635,9 @@ def admin_view_wards_view(request):
         inputNumber = request.POST.get('inputNumber')  # 从POST请求中获取inputNumber的值
         ward_id = request.POST.get('ward_id')  # 获取Ward的ID
         nurse_id = request.POST.get('inputNumber')  # 获取选中的NurseId
-
         ward = models.Ward.objects.get(WardId=ward_id)
         ward.assignedNurseId = nurse_id
         ward.save()
-
         return redirect('admin-view-wards')
     wards=models.Ward.objects.all()
     return render(request,'hospital/admin_view_wards.html',{'wards':wards, 'inputNumber':inputNumber, 'nurse_ids': nurse_ids})
@@ -846,6 +846,7 @@ def doctor_prescribe_view(request):
 @user_passes_test(is_patient)
 def patient_dashboard_view(request):
     patient=models.Patient.objects.get(user_id=request.user.id)
+    ward=models.Ward.objects.get(WardId=patient.wardId)
     mydict={}
     if patient.assignedDoctorId is not None:
         doctor=models.Doctor.objects.get(user_id=patient.assignedDoctorId)
@@ -870,6 +871,7 @@ def patient_dashboard_view(request):
                 'doctorDepartment': doctor.department,
                 'admitDate': patient.admitDate,
                 'wardId':patient.wardId,
+                'wardType':ward.WardType
             }
     else:
         mydict={
