@@ -201,10 +201,10 @@
 								<!-- Start Form Group -->
 								<div class="form-group mb-4">
 									<label class="required">First Name</label>
-									<input type="text" class="form-control" value="{{ userForm.firstname.value }}" > </div>
+									{% render_field userForm.first_name class="form-control"  %} </div>
                                 								<div class="form-group mb-4">
 									<label class="required">Last Name</label>
-									<input type="text" class="form-control" value="{{ userForm.lastname.value }}" > </div>
+									{% render_field userForm.last_name class="form-control"  %} </div>
 								<!-- /.End Form Group -->
 								<!-- Start Form Group -->
                                 <div class="form-group mb-4">
