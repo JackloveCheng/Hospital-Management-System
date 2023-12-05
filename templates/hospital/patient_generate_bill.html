@@ -1,9 +1,271 @@
-{% extends 'hospital/admin_base.html' %}
-{% load static %}
-{% block content %}
+{#{% extends 'hospital/admin_base.html' %}#}
+{#{% load static %}#}
+{#{% block content %}#}
+{##}
+{#<head>#}
+{#  <meta charset="utf-8">#}
+{#  <title>A simple, clean, and responsive HTML invoice template</title>#}
+{##}
+{#  <style>#}
+{#    .invoice-box {#}
+{#      max-width: 800px;#}
+{#      margin: auto;#}
+{#      padding: 30px;#}
+{#      border: 1px solid #eee;#}
+{#      box-shadow: 0 0 10px rgba(0, 0, 0, .15);#}
+{#      font-size: 16px;#}
+{#      line-height: 24px;#}
+{#      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;#}
+{#      color: #555;#}
+{#    }#}
+{##}
+{#    .invoice-box table {#}
+{#      width: 100%;#}
+{#      line-height: inherit;#}
+{#      text-align: left;#}
+{#    }#}
+{##}
+{#    .invoice-box table td {#}
+{#      padding: 5px;#}
+{#      vertical-align: top;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr td:nth-child(2) {#}
+{#      text-align: right;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.top table td {#}
+{#      padding-bottom: 20px;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.top table td.title {#}
+{#      font-size: 45px;#}
+{#      line-height: 45px;#}
+{#      color: #333;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.information table td {#}
+{#      padding-bottom: 40px;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.heading td {#}
+{#      background: #eee;#}
+{#      border-bottom: 1px solid #ddd;#}
+{#      font-weight: bold;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.details td {#}
+{#      padding-bottom: 20px;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.item td {#}
+{#      border-bottom: 1px solid #eee;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.item.last td {#}
+{#      border-bottom: none;#}
+{#    }#}
+{##}
+{#    .invoice-box table tr.total td:nth-child(2) {#}
+{#      border-top: 2px solid #eee;#}
+{#      font-weight: bold;#}
+{#    }#}
+{##}
+{#    @media only screen and (max-width: 600px) {#}
+{#      .invoice-box table tr.top table td {#}
+{#        width: 100%;#}
+{#        display: block;#}
+{#        text-align: center;#}
+{#      }#}
+{##}
+{#      .invoice-box table tr.information table td {#}
+{#        width: 100%;#}
+{#        display: block;#}
+{#        text-align: center;#}
+{#      }#}
+{#    }#}
+{##}
+{#    /** RTL **/#}
+{#    .rtl {#}
+{#      direction: rtl;#}
+{#      font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;#}
+{#    }#}
+{##}
+{#    .rtl table {#}
+{#      text-align: right;#}
+{#    }#}
+{##}
+{#    .rtl table tr td:nth-child(2) {#}
+{#      text-align: left;#}
+{#    }#}
+{##}
+{#    .menu {#}
+{#      top: 50px;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{##}
+{#<br><br><br>#}
+{#<div class="invoice-box">#}
+{#  <table cellpadding="0" cellspacing="0">#}
+{#    <tr class="top">#}
+{#      <td colspan="2">#}
+{#        <table>#}
+{#          <tr>#}
+{#            <td class="title">#}
+{#              <h1>Hospital Management</h1>#}
+{#            </td>#}
+{##}
+{#            <td>#}
+{##}
+{#              Admit Date: {{admitDate}}<br>#}
+{#              Release Date: {{todayDate}}<br>#}
+{#              Days Spent: {{day}}#}
+{#            </td>#}
+{#          </tr>#}
+{#        </table>#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="information">#}
+{#      <td colspan="2">#}
+{#        <table>#}
+{#          <tr>#}
+{#            <td>#}
+{#              Patient Name : {{name}}<br>#}
+{#              Patient Mobile : {{mobile}}<br>#}
+{#              Patient Addres : {{address}}<br>#}
+{#            </td>#}
+{##}
+{#            <td>#}
+{#              Doctor Name :<br>#}
+{#              {{assignedDoctorName}}<br>#}
+{##}
+{#            </td>#}
+{#          </tr>#}
+{#        </table>#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr class="heading">#}
+{#      <td>#}
+{#        Disease and Symptoms#}
+{#      </td>#}
+{#      <td>#}
+{##}
+{#      </td>#}
+{##}
+{#    </tr>#}
+{##}
+{#    <tr class="details">#}
+{#      <td>#}
+{#        {{symptoms}}#}
+{#      </td>#}
+{#    </tr>#}
+{#    <tr class="heading">#}
+{#      <td>#}
+{#        Item#}
+{#      </td>#}
+{##}
+{#      <td>#}
+{#        Price#}
+{#      </td>#}
+{#    </tr>#}
+{#    <form method="post">#}
+{#      {% csrf_token %}#}
+{##}
+{#      <tr class="item">#}
+{#        <td>#}
+{#          Room Charge (Per Day)#}
+{#        </td>#}
+{##}
+{#        <td>#}
+{#          <input type="number" name="roomCharge" placeholder="In Rupees" value="">#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#      <tr class="item">#}
+{#        <td>#}
+{#          Doctor Fee#}
+{#        </td>#}
+{##}
+{#        <td>#}
+{#          <input type="number" name="doctorFee" placeholder="In Rupees" value="">#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#      <tr class="item">#}
+{#        <td>#}
+{#          Medicine Cost#}
+{#        </td>#}
+{##}
+{#        <td>#}
+{#          <input type="number" name="medicineCost" placeholder="In Rupees" value="">#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#      <tr class="item last">#}
+{#        <td>#}
+{#          Other Charge#}
+{#        </td>#}
+{##}
+{#        <td>#}
+{#          <input type="number" name="OtherCharge" placeholder="In Rupees" value="">#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#      <tr class="total">#}
+{#        <td></td>#}
+{##}
+{#        <td>#}
+{#          <input type="submit" name="submit" value="Generate Bill">#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#    </form>#}
+{#  </table>#}
+{#</div>#}
+{##}
+{#<!--#}
+{#   developed By : sumit kumar#}
+{#   facebook : fb.com/sumit.luv#}
+{#   youtube : youtube.com/lazycoders#}
+{#   -->#}
+{##}
+{#{% endblock content %}#}
+
+<!DOCTYPE html>
+{% load widget_tweaks %}
+
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Neon Admin Panel">
+	<meta name="author" content="">
+
+	<title>Admin | Dashboard</title>
+
+
+	<link rel="stylesheet" href="../../static/css/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="../../static/css/entypo.css">
+	<link rel="stylesheet" href="../../static/css/css.css">
+	<link rel="stylesheet" href="../../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../../static/css/neon-core.css">
+	<link rel="stylesheet" href="../../static/css/neon-theme.css">
+	<link rel="stylesheet" href="../../static/css/neon-forms.css">
+	<link rel="stylesheet" href="../../static/css/custom.css">
+
+	<script src="../../static/js/jquery-1.11.0.min.js"></script>
+
+
+</head>
+
+<body class="page-body  page-fade" data-url="http://sc.chinaz.com">
+      <meta charset="utf-8">
   <title>A simple, clean, and responsive HTML invoice template</title>
 
   <style>
@@ -105,7 +367,238 @@
   </style>
 </head>
 
-<br><br><br>
+	<div class="page-container">
+		<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+		<div class="sidebar-menu">
+
+
+			<header class="logo-env">
+
+				<!-- logo -->
+				<div class="logo">
+					<a href="">
+						<img src="../../static/picture/logo@2x.png" width="120" alt="">
+					</a>
+				</div>
+
+				<!-- logo collapse icon -->
+
+				<div class="sidebar-collapse">
+					<a href="#"
+						class="sidebar-collapse-icon with-animation"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+
+
+				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+				<div class="sidebar-mobile-menu visible-xs">
+					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+						<i class="entypo-menu"></i>
+					</a>
+				</div>
+
+
+			</header>
+
+			<ul id="main-menu" class="">
+				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
+				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+				<!-- Search Bar -->
+				<li >
+					<a href="/admin-dashboard">
+						<i class="entypo-gauge"></i>
+						<span>
+                            <font size="4" >
+                                    DashBoard
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+
+				<li class="active opened active">
+					<a href="/admin-doctor">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Doctor
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+
+				<li>
+					<a href="/admin-patient">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Patient
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/admin-appointment">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Appointment
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+
+				<li>
+					<a href="/admin-pharmacy">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Pharmacy
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/admin-treatmentrecord">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    TreatmentRecord
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/admin-wards">
+						<i class="entypo-window"></i>
+						<span>
+                            <font size="4" >
+                                    Ward
+                            </font>
+                        </span>
+					</a>
+				</li>
+
+
+
+		</div>
+		<div class="main-content">
+
+			<div class="row">
+
+				<!-- Profile Info and Notifications -->
+				<div class="col-md-6 col-sm-8 clearfix">
+
+					<ul class="user-info pull-left pull-none-xsm">
+
+						<!-- Profile Info -->
+						<li class="profile-info dropdown">
+							<!-- add class "pull-right" if you want to place this from right -->
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="../../static/picture/thumb-1@2x.png" alt="" class="img-circle" width="44">
+                                <font size="4">
+                                    Admin：{{request.user.first_name}} {{ request.user.last_name}}
+                                </font>
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<!-- Reverse Caret -->
+								<li class="caret"></li>
+
+							</ul>
+						</li>
+
+					</ul>
+
+					<ul class="user-info pull-left pull-right-xs pull-none-xsm">
+
+						<!-- Raw Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-attention"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<li>
+									<ul class="dropdown-menu-list scroller">
+									</ul>
+								</li>
+
+
+							</ul>
+
+						</li>
+
+						<!-- Message Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-mail"></i>
+
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+						<!-- Task Notifications -->
+						<li class="notifications dropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i class="entypo-list"></i>
+								<span class="badge badge-warning"></span>
+							</a>
+
+							<ul class="dropdown-menu">
+
+							</ul>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+
+				<!-- Raw Links -->
+								<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+					<ul class="list-inline links-list pull-right">
+
+						<!-- Language Selector -->
+
+						<li class="sep"></li>
+
+						<li class="sep"></li>
+                        <li>
+							<a href="/logout">
+								Log Out <i class="entypo-logout right"></i>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+        <br><br><br>
 <div class="invoice-box">
   <table cellpadding="0" cellspacing="0">
     <tr class="top">
@@ -226,10 +719,33 @@
   </table>
 </div>
 
-<!--
-   developed By : sumit kumar
-   facebook : fb.com/sumit.luv
-   youtube : youtube.com/lazycoders
-   -->
+			<br>
+		</div>
+	</div>
 
-{% endblock content %}
+
+	<link rel="stylesheet" href="../../static/css/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="../../static/css/rickshaw.min.css">
+
+	<!-- Bottom Scripts -->
+	<script src="../../static/js/main-gsap.js"></script>
+	<script src="../../static/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="../../static/js/bootstrap.js"></script>
+	<script src="../../static/js/joinable.js"></script>
+	<script src="../../static/js/resizeable.js"></script>
+	<script src="../../static/js/neon-api.js"></script>
+	<script src="../../static/js/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="../../static/js/jquery-jvectormap-europe-merc-en.js"></script>
+	<script src="../../static/js/jquery.sparkline.min.js"></script>
+	<script src="../../static/js/d3.v3.js"></script>
+	<script src="../../static/js/rickshaw.min.js"></script>
+	<script src="../../static/js/raphael-min.js"></script>
+	<script src="../../static/js/morris.min.js"></script>
+	<script src="../../static/js/toastr.js"></script>
+	<script src="../../static/js/neon-chat.js"></script>
+	<script src="../../static/js/neon-custom.js"></script>
+	<script src="../../static/js/neon-demo.js"></script>
+
+</body>
+
+</html>
