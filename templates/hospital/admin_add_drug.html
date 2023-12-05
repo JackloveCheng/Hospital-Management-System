@@ -384,6 +384,9 @@
 
 			<br>
 
+            <div class="container">
+                 <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 <div class="container register-form" style="font-size: 16px">
   <div class="form">
     <div class="note">
@@ -392,9 +395,6 @@
     <div class="form-content">
       <div class="row justify-content-center"> <!-- 新增的 div 元素 -->
         <div class="col-md-6">
-          <div class="form-group">
-            {% render_field userForm.first_name class="form-control" style="height: 45px" placeholder="First Name" %}
-          </div>
           <div class="form-group">
             {% render_field drugForm.drugId class="form-control" placeholder="Drug Id" %}
           </div>
@@ -413,7 +413,10 @@
 
   </div>
 </div>
+  </form>
 
+
+            </div>
 
 {#           <div class="container">#}
 {#                 <form method="post" enctype="multipart/form-data">#}
