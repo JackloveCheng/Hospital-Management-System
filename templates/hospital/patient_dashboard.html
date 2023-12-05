@@ -356,7 +356,11 @@
 							data-delay="0">{{wardId}}</div>
                         <br>
                               <h4>Ward</h4>
+                        {% if wardId != '' %}
                         <h4>{{ wardType }}</h4>
+                         {%else%}
+                            <h4> You don't have an ward now</h4>
+                         {%endif%}
 					</div>
 
 				</div>

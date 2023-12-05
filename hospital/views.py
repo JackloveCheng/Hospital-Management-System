@@ -846,7 +846,6 @@ def doctor_prescribe_view(request):
 @user_passes_test(is_patient)
 def patient_dashboard_view(request):
     patient=models.Patient.objects.get(user_id=request.user.id)
-    ward=models.Ward.objects.get(WardId=patient.wardId)
     mydict={}
     if patient.assignedDoctorId is not None:
         doctor=models.Doctor.objects.get(user_id=patient.assignedDoctorId)
@@ -860,7 +859,8 @@ def patient_dashboard_view(request):
         'doctorDepartment':doctor.department,
         'admitDate':patient.admitDate,
         }
-        if patient.wardId!='':
+        if patient.wardId is not None:
+            ward = models.Ward.objects.get(WardId=patient.wardId)
             mydict = {
                 'patient': patient,
                 'appointment': True,
@@ -873,6 +873,19 @@ def patient_dashboard_view(request):
                 'wardId':patient.wardId,
                 'wardType':ward.WardType
             }
+        else:
+            mydict = {
+                'patient': patient,
+                'appointment': True,
+                'doctorName': doctor.get_name,
+                'doctorMobile': doctor.mobile,
+                'doctorAddress': doctor.address,
+                'symptoms': patient.symptoms,
+                'doctorDepartment': doctor.department,
+                'admitDate': patient.admitDate,
+                'wardId': ''
+            }
+
     else:
         mydict={
         'patient':patient,
