@@ -73,7 +73,7 @@ class PatientForm(forms.ModelForm):
                                               empty_label="Name and Department", to_field_name="user_id",
                                               required=False)
     wardId = forms.IntegerField(initial='', required=False)
-
+    wardType = forms.CharField(initial='', required=False)
     class Meta:
         model = models.Patient
         fields = ['address', 'mobile', 'status', 'symptoms']

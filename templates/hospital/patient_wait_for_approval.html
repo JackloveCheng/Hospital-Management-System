@@ -21,6 +21,7 @@
     .alert {
       margin: 0px;
     }
+
   </style>
 </head>
 
@@ -32,11 +33,11 @@
   <div class="jumbotron" style="margin-top: 0px;
     margin-bottom: 0px;">
     <h1 class="display-4">Hello {{request.user.first_name}}</h1>
-    <p class="lead">Your Account is not approved till now <br><br>Our Team is checking your profile <br><br> Soon your account will be confirmed !!!</p>
+    <p class="lead" style="text-align: center">Your Account is not approved till now <br><br>Our Team is checking your profile <br><br> Soon your account will be confirmed !!!</p>
     <hr class="my-4">
-    <p>Check Later</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout For Now</a>
+    <p style="text-align: center">Check Later</p>
+    <p class="lead" style="text-align: center">
+      <a class="btn btn-primary ms-2 ms-xl-0" href="/logout" role="button" >Logout For Now</a>
     </p>
   </div>
 
